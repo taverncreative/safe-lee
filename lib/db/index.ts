@@ -24,7 +24,7 @@ export const db = new Proxy({} as ReturnType<typeof drizzle<typeof schema>>, {
   get(_, prop) {
     const instance = getDb();
     if (!instance) throw new Error("DATABASE_URL not configured");
-    return (instance as Record<string | symbol, unknown>)[prop];
+    return (instance as unknown as Record<string | symbol, unknown>)[prop];
   },
 });
 
