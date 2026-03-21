@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import { Phone, Mail, MapPin, Clock } from "lucide-react";
 import { contactMeta } from "@/lib/seo/meta-generator";
 import { ContactForm } from "@/components/forms/ContactForm";
@@ -18,9 +19,18 @@ export default function ContactPage() {
         url={`${BUSINESS.url}/contact-us`}
       />
 
-      {/* Page Header */}
-      <section className="bg-gradient-to-br from-sl-navy via-sl-red-dark to-sl-red py-16 lg:py-20">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      {/* Page Header — photo hero with dark overlay */}
+      <section className="relative min-h-[280px] flex items-center justify-center overflow-hidden sm:min-h-[340px]">
+        <Image
+          src="/images/Van Photos/WhatsApp Image 2025-12-09 at 17.40.34.jpeg"
+          alt="Safe Lee Inspection & Consultancy branded van"
+          fill
+          priority
+          className="object-cover"
+          sizes="100vw"
+        />
+        <div className="absolute inset-0 bg-black/60" />
+        <div className="relative z-10 mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8 lg:py-20">
           <div className="mx-auto max-w-2xl text-center">
             <h1 className="font-heading text-4xl font-extrabold text-white sm:text-5xl">
               Contact Us

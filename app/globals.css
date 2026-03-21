@@ -45,9 +45,9 @@ html {
 .bg-camo {
   background-color: #1a1a1a;
   background-image: url('/images/Decorative/camo-bg.jpg');
-  background-size: 800px auto;
+  background-size: cover;
   background-position: center;
-  background-repeat: repeat;
+  background-repeat: no-repeat;
 }
 
 .reveal-visible {
