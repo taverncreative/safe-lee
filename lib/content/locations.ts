@@ -1,31 +1,20 @@
 /* ------------------------------------------------------------------ */
-/*  Static location data — shared between service pages and pSEO route */
+/*  Static location data — North West England (Manchester centred)     */
 /* ------------------------------------------------------------------ */
 
 export const LOCATIONS = [
+  // Greater Manchester
   { name: "Manchester", slug: "manchester", county: "Greater Manchester", region: "North West", latitude: "53.4808", longitude: "-2.2426" },
-  { name: "Liverpool", slug: "liverpool", county: "Merseyside", region: "North West", latitude: "53.4084", longitude: "-2.9916" },
-  { name: "Leeds", slug: "leeds", county: "West Yorkshire", region: "Yorkshire", latitude: "53.8008", longitude: "-1.5491" },
-  { name: "Sheffield", slug: "sheffield", county: "South Yorkshire", region: "Yorkshire", latitude: "53.3811", longitude: "-1.4701" },
+  { name: "Irlam", slug: "irlam", county: "Greater Manchester", region: "North West", latitude: "53.4438", longitude: "-2.4213" },
+  { name: "Salford", slug: "salford", county: "Greater Manchester", region: "North West", latitude: "53.4875", longitude: "-2.2901" },
   { name: "Bolton", slug: "bolton", county: "Greater Manchester", region: "North West", latitude: "53.5782", longitude: "-2.4299" },
   { name: "Wigan", slug: "wigan", county: "Greater Manchester", region: "North West", latitude: "53.5461", longitude: "-2.6325" },
   { name: "Stockport", slug: "stockport", county: "Greater Manchester", region: "North West", latitude: "53.4106", longitude: "-2.1575" },
-  { name: "Salford", slug: "salford", county: "Greater Manchester", region: "North West", latitude: "53.4875", longitude: "-2.2901" },
   { name: "Oldham", slug: "oldham", county: "Greater Manchester", region: "North West", latitude: "53.5409", longitude: "-2.1114" },
   { name: "Rochdale", slug: "rochdale", county: "Greater Manchester", region: "North West", latitude: "53.6097", longitude: "-2.1561" },
   { name: "Bury", slug: "bury", county: "Greater Manchester", region: "North West", latitude: "53.5933", longitude: "-2.2966" },
   { name: "Tameside", slug: "tameside", county: "Greater Manchester", region: "North West", latitude: "53.4804", longitude: "-2.0813" },
   { name: "Trafford", slug: "trafford", county: "Greater Manchester", region: "North West", latitude: "53.4227", longitude: "-2.3510" },
-  { name: "Warrington", slug: "warrington", county: "Cheshire", region: "North West", latitude: "53.3900", longitude: "-2.5970" },
-  { name: "St Helens", slug: "st-helens", county: "Merseyside", region: "North West", latitude: "53.4534", longitude: "-2.7368" },
-  { name: "Preston", slug: "preston", county: "Lancashire", region: "North West", latitude: "53.7632", longitude: "-2.7031" },
-  { name: "Blackburn", slug: "blackburn", county: "Lancashire", region: "North West", latitude: "53.7488", longitude: "-2.4818" },
-  { name: "Burnley", slug: "burnley", county: "Lancashire", region: "North West", latitude: "53.7893", longitude: "-2.2483" },
-  { name: "Chester", slug: "chester", county: "Cheshire", region: "North West", latitude: "53.1930", longitude: "-2.8931" },
-  { name: "Crewe", slug: "crewe", county: "Cheshire", region: "North West", latitude: "53.0988", longitude: "-2.4405" },
-  { name: "Blackpool", slug: "blackpool", county: "Lancashire", region: "North West", latitude: "53.8175", longitude: "-3.0357" },
-  { name: "Lancaster", slug: "lancaster", county: "Lancashire", region: "North West", latitude: "54.0466", longitude: "-2.8007" },
-  { name: "Irlam", slug: "irlam", county: "Greater Manchester", region: "North West", latitude: "53.4438", longitude: "-2.4213" },
   { name: "Eccles", slug: "eccles", county: "Greater Manchester", region: "North West", latitude: "53.4847", longitude: "-2.3344" },
   { name: "Urmston", slug: "urmston", county: "Greater Manchester", region: "North West", latitude: "53.4487", longitude: "-2.3551" },
   { name: "Stretford", slug: "stretford", county: "Greater Manchester", region: "North West", latitude: "53.4441", longitude: "-2.3086" },
@@ -33,26 +22,26 @@ export const LOCATIONS = [
   { name: "Altrincham", slug: "altrincham", county: "Greater Manchester", region: "North West", latitude: "53.3870", longitude: "-2.3547" },
   { name: "Leigh", slug: "leigh", county: "Greater Manchester", region: "North West", latitude: "53.4968", longitude: "-2.5157" },
   { name: "Ashton-under-Lyne", slug: "ashton-under-lyne", county: "Greater Manchester", region: "North West", latitude: "53.4897", longitude: "-2.0985" },
-  { name: "Birmingham", slug: "birmingham", county: "West Midlands", region: "West Midlands", latitude: "52.4862", longitude: "-1.8904" },
-  { name: "London", slug: "london", county: "Greater London", region: "London", latitude: "51.5074", longitude: "-0.1278" },
-  { name: "Bradford", slug: "bradford", county: "West Yorkshire", region: "Yorkshire", latitude: "53.7960", longitude: "-1.7594" },
-  { name: "Huddersfield", slug: "huddersfield", county: "West Yorkshire", region: "Yorkshire", latitude: "53.6458", longitude: "-1.7850" },
-  { name: "Wakefield", slug: "wakefield", county: "West Yorkshire", region: "Yorkshire", latitude: "53.6830", longitude: "-1.4984" },
-  { name: "York", slug: "york", county: "North Yorkshire", region: "Yorkshire", latitude: "53.9591", longitude: "-1.0815" },
-  { name: "Doncaster", slug: "doncaster", county: "South Yorkshire", region: "Yorkshire", latitude: "53.5228", longitude: "-1.1285" },
-  { name: "Barnsley", slug: "barnsley", county: "South Yorkshire", region: "Yorkshire", latitude: "53.5529", longitude: "-1.4793" },
-  { name: "Nottingham", slug: "nottingham", county: "Nottinghamshire", region: "East Midlands", latitude: "52.9548", longitude: "-1.1581" },
-  { name: "Derby", slug: "derby", county: "Derbyshire", region: "East Midlands", latitude: "52.9225", longitude: "-1.4746" },
-  { name: "Stoke-on-Trent", slug: "stoke-on-trent", county: "Staffordshire", region: "West Midlands", latitude: "53.0027", longitude: "-2.1794" },
-  { name: "Coventry", slug: "coventry", county: "West Midlands", region: "West Midlands", latitude: "52.4068", longitude: "-1.5197" },
-  { name: "Leicester", slug: "leicester", county: "Leicestershire", region: "East Midlands", latitude: "52.6369", longitude: "-1.1398" },
-  { name: "Sunderland", slug: "sunderland", county: "Tyne and Wear", region: "North East", latitude: "54.9069", longitude: "-1.3838" },
-  { name: "Newcastle", slug: "newcastle", county: "Tyne and Wear", region: "North East", latitude: "54.9783", longitude: "-1.6178" },
-  { name: "Middlesbrough", slug: "middlesbrough", county: "North Yorkshire", region: "North East", latitude: "54.5742", longitude: "-1.2350" },
-  { name: "Carlisle", slug: "carlisle", county: "Cumbria", region: "North West", latitude: "54.8925", longitude: "-2.9329" },
-  { name: "Barrow-in-Furness", slug: "barrow-in-furness", county: "Cumbria", region: "North West", latitude: "54.1107", longitude: "-3.2267" },
+  // Merseyside
+  { name: "Liverpool", slug: "liverpool", county: "Merseyside", region: "North West", latitude: "53.4084", longitude: "-2.9916" },
+  { name: "St Helens", slug: "st-helens", county: "Merseyside", region: "North West", latitude: "53.4534", longitude: "-2.7368" },
   { name: "Southport", slug: "southport", county: "Merseyside", region: "North West", latitude: "53.6477", longitude: "-3.0056" },
   { name: "Widnes", slug: "widnes", county: "Cheshire", region: "North West", latitude: "53.3617", longitude: "-2.7294" },
+  // Lancashire
+  { name: "Preston", slug: "preston", county: "Lancashire", region: "North West", latitude: "53.7632", longitude: "-2.7031" },
+  { name: "Blackburn", slug: "blackburn", county: "Lancashire", region: "North West", latitude: "53.7488", longitude: "-2.4818" },
+  { name: "Burnley", slug: "burnley", county: "Lancashire", region: "North West", latitude: "53.7893", longitude: "-2.2483" },
+  { name: "Blackpool", slug: "blackpool", county: "Lancashire", region: "North West", latitude: "53.8175", longitude: "-3.0357" },
+  { name: "Lancaster", slug: "lancaster", county: "Lancashire", region: "North West", latitude: "54.0466", longitude: "-2.8007" },
+  // Cheshire
+  { name: "Warrington", slug: "warrington", county: "Cheshire", region: "North West", latitude: "53.3900", longitude: "-2.5970" },
+  { name: "Chester", slug: "chester", county: "Cheshire", region: "North West", latitude: "53.1930", longitude: "-2.8931" },
+  { name: "Crewe", slug: "crewe", county: "Cheshire", region: "North West", latitude: "53.0988", longitude: "-2.4405" },
+  // Cumbria
+  { name: "Carlisle", slug: "carlisle", county: "Cumbria", region: "North West", latitude: "54.8925", longitude: "-2.9329" },
+  { name: "Barrow-in-Furness", slug: "barrow-in-furness", county: "Cumbria", region: "North West", latitude: "54.1107", longitude: "-3.2267" },
+  // Staffordshire (bordering NW)
+  { name: "Stoke-on-Trent", slug: "stoke-on-trent", county: "Staffordshire", region: "West Midlands", latitude: "53.0027", longitude: "-2.1794" },
 ] as const;
 
 export type LocationData = (typeof LOCATIONS)[number];

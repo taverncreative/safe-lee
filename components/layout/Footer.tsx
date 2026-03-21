@@ -134,36 +134,40 @@ export function Footer() {
           {/* Locations */}
           <div className="mt-10 border-t border-white/10 pt-10">
             <h3 className="mb-4 text-center text-sm font-semibold uppercase tracking-wider text-white">
-              Locations
+              Areas We Cover
             </h3>
-            <div className="flex flex-wrap justify-center gap-x-3 gap-y-2">
+            <div className="flex flex-wrap justify-center gap-x-1 gap-y-1 text-xs text-sl-gray-300">
               {[
-                { name: "Manchester", slug: "manchester" },
-                { name: "Liverpool", slug: "liverpool" },
-                { name: "Leeds", slug: "leeds" },
-                { name: "Sheffield", slug: "sheffield" },
-                { name: "Bolton", slug: "bolton" },
-                { name: "Wigan", slug: "wigan" },
-                { name: "Stockport", slug: "stockport" },
-                { name: "Salford", slug: "salford" },
-                { name: "Preston", slug: "preston" },
-                { name: "Blackburn", slug: "blackburn" },
-                { name: "Warrington", slug: "warrington" },
-                { name: "Chester", slug: "chester" },
-                { name: "Birmingham", slug: "birmingham" },
-                { name: "London", slug: "london" },
-                { name: "Nottingham", slug: "nottingham" },
-                { name: "Newcastle", slug: "newcastle" },
-              ].map((loc) => (
-                <Link
-                  key={loc.slug}
-                  href={`/pssr-inspections-${loc.slug}`}
-                  className="text-xs text-sl-gray-300 transition-colors hover:text-white"
-                >
-                  {loc.name}
-                </Link>
+                "Manchester",
+                "Salford",
+                "Bolton",
+                "Wigan",
+                "Stockport",
+                "Oldham",
+                "Rochdale",
+                "Bury",
+                "Trafford",
+                "Warrington",
+                "St Helens",
+                "Liverpool",
+                "Preston",
+                "Blackburn",
+                "Burnley",
+                "Blackpool",
+                "Chester",
+                "Crewe",
+                "Widnes",
+                "Southport",
+              ].map((name, i, arr) => (
+                <span key={name}>
+                  {name}
+                  {i < arr.length - 1 && <span className="mx-1">·</span>}
+                </span>
               ))}
             </div>
+            <p className="mt-3 text-center text-xs text-sl-gray-300/70">
+              Covering Greater Manchester, Lancashire, Merseyside, Cheshire &amp; the wider North West
+            </p>
           </div>
         </div>
 
