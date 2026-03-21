@@ -1,0 +1,85 @@
+import type { MetadataRoute } from "next";
+import { SERVICE_SEED, PSEO_SERVICE_SLUGS } from "@/lib/content/service-data";
+
+const BASE_URL = "https://www.safeleeinspectionconsultancy.com";
+
+async function fetchLocations(): Promise<{ slug: string }[]> {
+  try {
+    const { getAllLocations } = await import("@/lib/queries/locations");
+    const locations = await getAllLocations();
+    return locations.map((l) => ({ slug: l.slug }));
+  } catch {
+    return [];
+  }
+}
+
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
+  const now = new Date();
+  const locations = await fetchLocations();
+
+  /* ---- Static pages ---- */
+  const staticPages: MetadataRoute.Sitemap = [
+    {
+      url: BASE_URL,
+      lastModified: now,
+      changeFrequency: "weekly",
+      priority: 1.0,
+    },
+    {
+      url: `${BASE_URL}/contact-us`,
+      lastModified: now,
+      changeFrequency: "monthly",
+      priority: 0.7,
+    },
+    {
+      url: `${BASE_URL}/privacy-policy`,
+      lastModified: now,
+      changeFrequency: "yearly",
+      priority: 0.3,
+    },
+    {
+      url: `${BASE_URL}/terms-and-conditions`,
+      lastModified: now,
+      changeFrequency: "yearly",
+      priority: 0.3,
+    },
+    {
+      url: `${BASE_URL}/accessibility`,
+      lastModified: now,
+      changeFrequency: "yearly",
+      priority: 0.3,
+    },
+  ];
+
+  /* ---- Service hub pages (all 6 services) ---- */
+  const serviceHubPages: MetadataRoute.Sitemap = SERVICE_SEED.map(
+    (service) => ({
+      url: `${BASE_URL}/${service.slug}`,
+      lastModified: now,
+      changeFrequency: "weekly" as const,
+      priority: 0.9,
+    })
+  );
+
+  /* ---- pSEO service + location pages ---- */
+  const locationPages: MetadataRoute.Sitemap = [];
+
+  for (const serviceSlug of PSEO_SERVICE_SLUGS) {
+    for (const location of locations) {
+      locationPages.push({
+        url: `${BASE_URL}/${serviceSlug}-${location.slug}`,
+        lastModified: now,
+        changeFrequency: "monthly",
+        priority: 0.7,
+      });
+      locationPages.push({
+        url: `${BASE_URL}/${serviceSlug}-near-${location.slug}`,
+        lastModified: now,
+        changeFrequency: "monthly",
+        priority: 0.6,
+      });
+    }
+  }
+
+  return [...staticPages, ...serviceHubPages, ...locationPages];
+}
