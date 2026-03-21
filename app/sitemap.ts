@@ -1,21 +1,12 @@
 import type { MetadataRoute } from "next";
 import { SERVICE_SEED, PSEO_SERVICE_SLUGS } from "@/lib/content/service-data";
+import { LOCATIONS } from "@/lib/content/locations";
 
 const BASE_URL = "https://www.safeleeinspectionconsultancy.com";
 
-async function fetchLocations(): Promise<{ slug: string }[]> {
-  try {
-    const { getAllLocations } = await import("@/lib/queries/locations");
-    const locations = await getAllLocations();
-    return locations.map((l) => ({ slug: l.slug }));
-  } catch {
-    return [];
-  }
-}
-
-export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
+export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date();
-  const locations = await fetchLocations();
+  const locations = LOCATIONS;
 
   /* ---- Static pages ---- */
   const staticPages: MetadataRoute.Sitemap = [

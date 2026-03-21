@@ -1,7 +1,6 @@
 "use client";
 
-import { motion, type Variants } from "framer-motion";
-import type { ReactNode } from "react";
+import { useEffect, useRef, type ReactNode } from "react";
 
 type Direction = "up" | "left" | "right";
 
@@ -12,10 +11,10 @@ interface RevealProps {
   direction?: Direction;
 }
 
-const offsets: Record<Direction, { x: number; y: number }> = {
-  up: { x: 0, y: 40 },
-  left: { x: -40, y: 0 },
-  right: { x: 40, y: 0 },
+const transforms: Record<Direction, string> = {
+  up: "translateY(24px)",
+  left: "translateX(-24px)",
+  right: "translateX(24px)",
 };
 
 export function Reveal({
@@ -24,35 +23,38 @@ export function Reveal({
   delay = 0,
   direction = "up",
 }: RevealProps) {
-  const offset = offsets[direction];
+  const ref = useRef<HTMLDivElement>(null);
 
-  const variants: Variants = {
-    hidden: {
-      opacity: 0,
-      x: offset.x,
-      y: offset.y,
-    },
-    visible: {
-      opacity: 1,
-      x: 0,
-      y: 0,
-      transition: {
-        duration: 0.6,
-        ease: "easeOut",
-        delay,
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          el.style.transitionDelay = `${delay}s`;
+          el.classList.add("reveal-visible");
+          observer.unobserve(el);
+        }
       },
-    },
-  };
+      { threshold: 0.1, rootMargin: "-30px" }
+    );
+
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, [delay]);
 
   return (
-    <motion.div
-      initial="hidden"
-      whileInView="visible"
-      viewport={{ once: true, margin: "-50px" }}
-      variants={variants}
+    <div
+      ref={ref}
       className={className}
+      style={{
+        opacity: 0,
+        transform: transforms[direction],
+        transition: "opacity 0.5s ease-out, transform 0.5s ease-out",
+      }}
     >
       {children}
-    </motion.div>
+    </div>
   );
 }
