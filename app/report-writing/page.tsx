@@ -23,7 +23,7 @@ export default function Page() {
   return (
     <ServicePage
       service={SERVICE}
-      overviewImage="/images/Other photos/Tele.webp"
+      overviewImage="/images/Report Writing/Tele.webp"
       overviewAlt="Professional inspection report writing — Safe Lee Inspection & Consultancy"
     />
   );

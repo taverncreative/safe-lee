@@ -3,15 +3,19 @@
 import { useState, useEffect, useCallback } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { Menu, X, Phone } from "lucide-react";
+import { Menu, X, Phone, FileText, ChevronRight } from "lucide-react";
 
-const navLinks = [
+const serviceLinks = [
   { label: "LOLER", href: "/loler-inspections" },
   { label: "PSSR", href: "/pssr-inspections" },
   { label: "COSHH", href: "/coshh-lev-inspections" },
   { label: "PUWER", href: "/puwer-inspections" },
   { label: "WAHR", href: "/wahr-inspections" },
   { label: "Report Writing", href: "/report-writing" },
+];
+
+const navLinks = [
+  ...serviceLinks,
   { label: "Contact Us", href: "/contact-us" },
 ];
 
@@ -94,57 +98,92 @@ export function Navbar() {
         <>
           {/* Backdrop */}
           <div
-            className="fixed inset-0 z-40 bg-black/30 lg:hidden"
+            className="fixed inset-0 z-40 bg-black/50 backdrop-blur-sm lg:hidden"
             onClick={closeAll}
             aria-hidden="true"
           />
 
           <div
-            className="bg-camo fixed inset-y-0 right-0 z-50 w-full max-w-sm px-6 py-6 shadow-xl lg:hidden"
+            className="bg-camo fixed inset-y-0 right-0 z-50 flex w-full max-w-xs flex-col shadow-2xl lg:hidden"
             role="dialog"
             aria-modal="true"
             aria-label="Mobile navigation"
           >
-            <div className="mb-8 flex items-center justify-between">
+            {/* Header */}
+            <div className="flex items-center justify-between border-b border-white/10 px-5 py-4">
               <Link href="/" className="flex items-center" onClick={closeAll}>
                 <Image
                   src="/images/Logos/Logo For Whit backgroun.svg"
                   alt="Safe Lee Inspections & Consultancy"
-                  width={120}
-                  height={48}
+                  width={100}
+                  height={40}
                 />
               </Link>
               <button
                 onClick={closeAll}
-                className="rounded-lg p-2 text-white hover:bg-white/10"
+                className="rounded-full p-2 text-white/70 transition-colors hover:bg-white/10 hover:text-white"
                 aria-label="Close menu"
               >
-                <X className="h-6 w-6" />
+                <X className="h-5 w-5" />
               </button>
             </div>
 
-            <div className="flex flex-col gap-1">
-              {navLinks.map((link) => (
+            {/* Navigation links */}
+            <nav className="flex-1 overflow-y-auto px-3 py-4">
+              {/* Home */}
+              <Link
+                href="/"
+                className="flex items-center gap-3 rounded-lg px-3 py-3 text-sm font-medium text-white transition-colors hover:bg-white/10"
+                onClick={closeAll}
+              >
+                Home
+              </Link>
+
+              {/* Services section */}
+              <p className="mb-1 mt-4 px-3 text-xs font-semibold uppercase tracking-wider text-white/40">
+                Inspections
+              </p>
+              {serviceLinks.map((link) => (
                 <Link
                   key={link.href}
                   href={link.href}
-                  className="rounded-lg px-4 py-3 text-base font-medium text-white hover:bg-white/10 hover:text-sl-red"
+                  className="flex items-center justify-between rounded-lg px-3 py-2.5 text-sm font-medium text-white/90 transition-colors hover:bg-white/10 hover:text-white"
                   onClick={closeAll}
                 >
                   {link.label}
+                  <ChevronRight className="h-4 w-4 text-white/30" />
                 </Link>
               ))}
-            </div>
 
-            {/* Mobile phone CTA */}
-            <div className="mt-8 border-t border-white/10 pt-6">
+              {/* Contact */}
+              <div className="mt-4 border-t border-white/10 pt-4">
+                <Link
+                  href="/contact-us"
+                  className="flex items-center gap-3 rounded-lg px-3 py-3 text-sm font-medium text-white transition-colors hover:bg-white/10"
+                  onClick={closeAll}
+                >
+                  Contact Us
+                </Link>
+              </div>
+            </nav>
+
+            {/* Bottom CTAs */}
+            <div className="border-t border-white/10 p-4 space-y-3">
               <a
                 href="tel:01617062022"
-                className="flex w-full items-center justify-center gap-2 rounded-lg bg-sl-red px-5 py-3 text-base font-semibold text-white transition-colors hover:bg-sl-red-dark"
+                className="flex w-full items-center justify-center gap-2 rounded-lg bg-sl-red px-4 py-3 text-sm font-bold text-white transition-colors hover:bg-sl-red-dark"
               >
-                <Phone className="h-5 w-5" />
-                0161 706 2022
+                <Phone className="h-4 w-4" />
+                Call 0161 706 2022
               </a>
+              <Link
+                href="/contact-us"
+                className="flex w-full items-center justify-center gap-2 rounded-lg border border-white/20 px-4 py-3 text-sm font-semibold text-white transition-colors hover:bg-white/10"
+                onClick={closeAll}
+              >
+                <FileText className="h-4 w-4" />
+                Get a Free Quote
+              </Link>
             </div>
           </div>
         </>

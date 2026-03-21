@@ -34,7 +34,7 @@ const SERVICE_HERO_IMAGES: Record<string, string> = {
   "WAHR Inspections": "/images/WAHR/Hero.webp",
   "PUWER Inspections": "/images/PUWER/Hero.webp",
   "COSHH LEV Inspections": "/images/COSSH/hero.webp",
-  "Report Writing": "/images/Other photos/Tele.webp",
+  "Report Writing": "/images/Report Writing/Tele.webp",
 };
 
 export function ServiceHero({
