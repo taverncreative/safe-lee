@@ -24,4 +24,4 @@ export const GOOGLE_REVIEWS = [
       "Great service, very knowledgeable regarding my lifting equipment. If you're needing a LOLER examination carried out, get on to Safe Lee!",
     source: "Google",
   },
-] as const;
+];
