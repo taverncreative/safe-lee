@@ -44,10 +44,18 @@ html {
 
 .bg-camo {
   background-color: #1a1a1a;
-  background-image: url('/images/Decorative/camo-bg.jpg');
-  background-size: 1200px auto;
+  background-image: url('/images/Decorative/camo-bg2.webp');
+  background-size: 1920px auto;
   background-position: center;
   background-repeat: repeat;
+}
+
+.bg-camo-cover {
+  background-color: #1a1a1a;
+  background-image: url('/images/Decorative/camo-bg2.webp');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
 .reveal-visible {
