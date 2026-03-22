@@ -7,11 +7,11 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "db:generate": "drizzle-kit generate",
-    "db:push": "drizzle-kit push",
-    "db:migrate": "drizzle-kit migrate",
-    "db:seed": "npx tsx lib/db/seed.ts",
-    "db:studio": "drizzle-kit studio"
+    "indexing:urls": "npx tsx scripts/generate-urls.ts",
+    "indexing:google": "npx tsx scripts/submit-to-google.ts",
+    "indexing:google:dry": "npx tsx scripts/submit-to-google.ts --dry-run",
+    "indexing:bing": "npx tsx scripts/submit-indexnow.ts",
+    "indexing:bing:dry": "npx tsx scripts/submit-indexnow.ts --dry-run"
   },
   "dependencies": {
     "@tailwindcss/typography": "^0.5.19",
@@ -29,6 +29,7 @@
     "eslint": "^9",
     "eslint-config-next": "16.2.1",
     "tailwindcss": "^4",
+    "tsx": "^4.21.0",
     "typescript": "^5"
   }
 }
