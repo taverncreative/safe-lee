@@ -6,12 +6,14 @@ interface ComplianceSectionProps {
   serviceName?: string;
   regulationName?: string;
   content?: string;
+  businessContext?: string;
 }
 
 export function ComplianceSection({
   serviceName,
   regulationName,
   content,
+  businessContext,
 }: ComplianceSectionProps) {
   const defaultContent = regulationName
     ? `Under the ${regulationName}, employers and duty holders are legally required to ensure equipment is thoroughly examined by a competent person at regular intervals. Failure to comply can result in significant fines, enforcement action, and — most importantly — puts your workforce at serious risk.`
@@ -38,6 +40,14 @@ export function ComplianceSection({
               {content ?? defaultContent}
             </p>
           </Reveal>
+
+          {businessContext && (
+            <Reveal delay={0.17}>
+              <p className="mt-4 text-base leading-relaxed text-sl-gray-600">
+                {businessContext}
+              </p>
+            </Reveal>
+          )}
 
           {regulationName && (
             <Reveal delay={0.2}>

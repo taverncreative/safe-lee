@@ -1,9 +1,9 @@
 /* ------------------------------------------------------------------ */
 /*  [serviceLocation]/page.tsx — pSEO catch-all route                  */
 /*                                                                      */
-/*  Handles two page types from a single dynamic segment:               */
+/*  Handles service+location pages from a single dynamic segment:       */
 /*    /pssr-inspections-manchester      → service + location            */
-/*    /pssr-inspections-near-manchester → micro location ("near")       */
+/*    /pssr-inspections-near-manchester → 301 redirect to non-near URL  */
 /*                                                                      */
 /*  Service hub pages (/pssr-inspections etc.) are now handled by       */
 /*  their own static routes under app/<slug>/page.tsx.                  */
@@ -31,13 +31,14 @@ const STATIC_SLUGS = new Set([
 
 import { SERVICE_SEED, PSEO_SERVICE_SLUGS } from "@/lib/content/service-data";
 import { LOCATIONS } from "@/lib/content/locations";
-import {
-  serviceLocationMeta,
-  microLocationMeta,
-} from "@/lib/seo/meta-generator";
+import { serviceLocationMeta } from "@/lib/seo/meta-generator";
+
+import { LOCAL_INTROS } from "@/lib/content/local-intros";
+import { LOCATION_DATA } from "@/lib/content/location-data";
+import { LOCATION_FAQS } from "@/lib/content/location-faqs";
+import { LOCATION_INDUSTRIES } from "@/lib/content/location-industries";
 
 import { ServiceLocationPage } from "@/components/templates/ServiceLocationPage";
-import { MicroLocationPage } from "@/components/templates/MicroLocationPage";
 
 /* Static page imports — Turbopack dev workaround for routing overlap */
 import ContactPageContent from "@/app/contact-us/page";
@@ -54,14 +55,14 @@ import TermsPageContent from "@/app/terms-and-conditions/page";
 
 function parseSlug(
   slug: string
-): { type: "service-location" | "micro-location"; serviceSlug: string; locationSlug: string } | null {
-  // Check "near" pattern first (more specific)
+): { type: "service-location" | "near-redirect"; serviceSlug: string; locationSlug: string } | null {
+  // Check "near" pattern first — redirect these to the non-near URL
   for (const svcSlug of PSEO_SERVICE_SLUGS) {
     const nearPrefix = `${svcSlug}-near-`;
     if (slug.startsWith(nearPrefix)) {
       const locationSlug = slug.slice(nearPrefix.length);
       if (LOCATIONS.find((l) => l.slug === locationSlug)) {
-        return { type: "micro-location", serviceSlug: svcSlug, locationSlug };
+        return { type: "near-redirect", serviceSlug: svcSlug, locationSlug };
       }
     }
   }
@@ -149,7 +150,6 @@ export function generateStaticParams() {
   for (const svcSlug of PSEO_SERVICE_SLUGS) {
     for (const loc of LOCATIONS) {
       params.push({ serviceLocation: `${svcSlug}-${loc.slug}` });
-      params.push({ serviceLocation: `${svcSlug}-near-${loc.slug}` });
     }
   }
   return params;
@@ -169,20 +169,20 @@ export async function generateMetadata({
   const parsed = parseSlug(slug);
   if (!parsed) return {};
 
+  // Near-redirect pages don't need metadata — they redirect
+  if (parsed.type === "near-redirect") return {};
+
   const service = getService(parsed.serviceSlug);
   if (!service) return {};
 
   const location = getLocation(parsed.locationSlug);
   if (!location) return {};
 
-  // No DB yet — hasUniqueContent = false → noindex
-  const hasUniqueContent = false;
+  // Thin content guard: only index if we have a unique local intro
+  const localIntro = LOCAL_INTROS[`${service.slug}--${location.slug}`] ?? null;
+  const hasUniqueContent = !!localIntro;
 
-  if (parsed.type === "service-location") {
-    return serviceLocationMeta(service, location, hasUniqueContent);
-  }
-
-  return microLocationMeta(service, location, hasUniqueContent);
+  return serviceLocationMeta(service, location, hasUniqueContent);
 }
 
 /* ------------------------------------------------------------------ */
@@ -209,6 +209,11 @@ export default async function Page({
   const parsed = parseSlug(slug);
   if (!parsed) notFound();
 
+  // Near-location URLs → 301 redirect to the canonical non-near URL
+  if (parsed.type === "near-redirect") {
+    redirect(`/${parsed.serviceSlug}-${parsed.locationSlug}`);
+  }
+
   const service = getService(parsed.serviceSlug);
   if (!service) notFound();
 
@@ -226,18 +231,22 @@ export default async function Page({
     href: `/${s.slug}-${location.slug}`,
   }));
 
-  // Shared props
-  const pageProps = {
-    service,
-    location,
-    localIntro: null as string | null,
-    nearbyAreas,
-    crossLinks,
-  };
+  // Wire up enrichment data
+  const localIntro = LOCAL_INTROS[`${service.slug}--${location.slug}`] ?? null;
+  const locationData = LOCATION_DATA[location.slug] ?? null;
+  const locationFaqs = LOCATION_FAQS[location.slug] ?? [];
+  const locationIndustries = LOCATION_INDUSTRIES[location.slug] ?? [];
 
-  if (parsed.type === "micro-location") {
-    return <MicroLocationPage {...pageProps} />;
-  }
-
-  return <ServiceLocationPage {...pageProps} />;
+  return (
+    <ServiceLocationPage
+      service={service}
+      location={location}
+      localIntro={localIntro}
+      locationData={locationData}
+      locationFaqs={locationFaqs}
+      locationIndustries={locationIndustries}
+      nearbyAreas={nearbyAreas}
+      crossLinks={crossLinks}
+    />
+  );
 }

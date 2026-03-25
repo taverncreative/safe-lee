@@ -18,6 +18,7 @@ interface LocalServiceHeroProps {
   county: string;
   shortName: string;
   serviceSlug?: string;
+  subtitle?: string;
 }
 
 export function LocalServiceHero({
@@ -26,6 +27,7 @@ export function LocalServiceHero({
   county,
   shortName,
   serviceSlug,
+  subtitle,
 }: LocalServiceHeroProps) {
   const heroImage = serviceSlug
     ? SERVICE_HERO_IMAGES[serviceSlug] ?? "/images/HERO.webp"
@@ -82,8 +84,9 @@ export function LocalServiceHero({
 
         <Reveal delay={0.15}>
           <p className="mt-4 max-w-2xl text-lg text-white/80">
-            Professional {shortName} inspections in {locationName}, {county}.
-            Carried out by experienced, qualified engineers.
+            {subtitle
+              ? subtitle
+              : `Professional ${shortName} inspections in ${locationName}, ${county}. Carried out by experienced, qualified engineers.`}
           </p>
         </Reveal>
 

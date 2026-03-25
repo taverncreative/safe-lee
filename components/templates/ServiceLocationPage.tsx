@@ -1,5 +1,9 @@
 /* ------------------------------------------------------------------ */
 /*  ServiceLocationPage — service+location template (server component) */
+/*                                                                      */
+/*  Three deterministic layout variants (A / B / C) based on a hash    */
+/*  of the location slug, so each location page has a visually         */
+/*  distinct section order while remaining fully reproducible.          */
 /* ------------------------------------------------------------------ */
 
 import { LocalServiceHero } from "@/components/sections/LocalServiceHero";
@@ -20,6 +24,9 @@ import { LocalBusinessLocationSchema } from "@/components/seo/LocalBusinessLocat
 import { WebPageSchema } from "@/components/seo/WebPageSchema";
 import { BUSINESS } from "@/types";
 import { GOOGLE_REVIEWS } from "@/lib/content/reviews";
+import type { LocationEnrichment } from "@/lib/content/location-data";
+import type { LocationFAQ } from "@/lib/content/location-faqs";
+import type { LocationIndustry } from "@/lib/content/location-industries";
 
 /* ------------------------------------------------------------------ */
 /*  Props                                                               */
@@ -41,10 +48,25 @@ interface ServiceLocationPageProps {
     region: string;
   };
   localIntro?: string | null;
+  locationData?: LocationEnrichment | null;
+  locationFaqs?: LocationFAQ[];
+  locationIndustries?: LocationIndustry[];
   faqs?: { question: string; answer: string }[];
   reviews?: { author: string; rating: number; reviewText: string; source: string }[];
   nearbyAreas?: { name: string; slug: string; distance: number }[];
   crossLinks?: { label: string; href: string }[];
+}
+
+/* ------------------------------------------------------------------ */
+/*  Deterministic layout hash                                           */
+/* ------------------------------------------------------------------ */
+
+function locationHash(slug: string): number {
+  let hash = 0;
+  for (let i = 0; i < slug.length; i++) {
+    hash = (hash * 31 + slug.charCodeAt(i)) | 0;
+  }
+  return Math.abs(hash);
 }
 
 /* ------------------------------------------------------------------ */
@@ -55,15 +77,35 @@ export function ServiceLocationPage({
   service,
   location,
   localIntro,
+  locationData,
+  locationFaqs = [],
+  locationIndustries = [],
   faqs,
   reviews,
   nearbyAreas,
   crossLinks,
 }: ServiceLocationPageProps) {
   const displayReviews = reviews && reviews.length > 0 ? reviews : [...GOOGLE_REVIEWS];
-  const displayFaqs = faqs && faqs.length > 0 ? faqs : getStaticServiceFAQs(service.slug);
 
-  return (
+  // Merge location-specific FAQs with service FAQs
+  const serviceFaqs = faqs && faqs.length > 0 ? faqs : getStaticServiceFAQs(service.slug);
+  const displayFaqs = [...locationFaqs, ...serviceFaqs];
+
+  // Map location industries to the shape IndustryRelevance expects
+  const industries = locationIndustries.map((li) => ({
+    name: li.industry,
+    slug: li.slug,
+    relevanceNote: li.relevance,
+  }));
+
+  // Build the hero subtitle using businessContext when available
+  const heroSubtitle = locationData?.businessContext ?? undefined;
+
+  // Determine layout variant (A=0, B=1, C=2) from location slug hash
+  const variant = locationHash(location.slug) % 3;
+
+  /* ---- Shared structured data (always rendered) ---- */
+  const structuredData = (
     <>
       <ServiceSchema
         serviceName={service.name}
@@ -93,40 +135,44 @@ export function ServiceLocationPage({
         description={`Professional ${service.name.toLowerCase()} in ${location.name}, ${location.county}. Thorough examinations by a competent person from Safe Lee Inspection & Consultancy.`}
         url={`${BUSINESS.url}/${service.slug}-${location.slug}`}
       />
+    </>
+  );
 
-      <LocalServiceHero
-        serviceName={service.name}
-        locationName={location.name}
-        county={location.county}
-        shortName={service.shortName}
-        serviceSlug={service.slug}
-      />
+  /* ---- Reusable section elements ---- */
+  const localContextSection = localIntro ? (
+    <LocalContext
+      content={localIntro}
+      locationName={location.name}
+      serviceName={service.name}
+      locationData={locationData ?? undefined}
+    />
+  ) : null;
 
-      {localIntro && (
-        <LocalContext
-          content={localIntro}
-          locationName={location.name}
-          serviceName={service.name}
-        />
-      )}
+  const complianceSection = (
+    <ComplianceSection
+      serviceName={service.name}
+      regulationName={service.regulationName}
+      businessContext={heroSubtitle}
+    />
+  );
 
-      <ComplianceSection
-        serviceName={service.name}
-        regulationName={service.regulationName}
-      />
+  const processSection = <InspectionProcess serviceName={service.name} />;
 
-      <InspectionProcess serviceName={service.name} />
+  const industrySection = (
+    <IndustryRelevance
+      industries={industries}
+      serviceName={service.name}
+      locationName={location.name}
+    />
+  );
 
-      <IndustryRelevance
-        industries={[]}
-        serviceName={service.name}
-        locationName={location.name}
-      />
+  const faqSection = <FAQAccordion faqs={displayFaqs} />;
 
-      <Testimonials reviews={displayReviews} />
+  const reviewsSection = <Testimonials reviews={displayReviews} />;
 
-      <FAQAccordion faqs={displayFaqs} />
-
+  /* ---- Footer sections (always last) ---- */
+  const footerSections = (
+    <>
       {nearbyAreas && nearbyAreas.length > 0 && (
         <NearbyAreas
           areas={nearbyAreas}
@@ -143,6 +189,37 @@ export function ServiceLocationPage({
       )}
 
       <CTA serviceName={service.name} locationName={location.name} />
+    </>
+  );
+
+  /* ---- Layout variants ---- */
+  // Layout A: LocalContext -> Compliance -> Process -> Industries -> FAQs -> Reviews
+  // Layout B: LocalContext -> Industries -> Compliance -> FAQs -> Process -> Reviews
+  // Layout C: LocalContext -> FAQs -> Industries -> Process -> Compliance -> Reviews
+
+  const bodySections =
+    variant === 0
+      ? [localContextSection, complianceSection, processSection, industrySection, faqSection, reviewsSection]
+      : variant === 1
+        ? [localContextSection, industrySection, complianceSection, faqSection, processSection, reviewsSection]
+        : [localContextSection, faqSection, industrySection, processSection, complianceSection, reviewsSection];
+
+  return (
+    <>
+      {structuredData}
+
+      <LocalServiceHero
+        serviceName={service.name}
+        locationName={location.name}
+        county={location.county}
+        shortName={service.shortName}
+        serviceSlug={service.slug}
+        subtitle={heroSubtitle}
+      />
+
+      {bodySections}
+
+      {footerSections}
     </>
   );
 }
