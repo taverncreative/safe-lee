@@ -138,29 +138,34 @@ export function Footer() {
             </h3>
             <div className="flex flex-wrap justify-center gap-x-1 gap-y-1 text-xs text-sl-gray-300">
               {[
-                "Manchester",
-                "Salford",
-                "Bolton",
-                "Wigan",
-                "Stockport",
-                "Oldham",
-                "Rochdale",
-                "Bury",
-                "Trafford",
-                "Warrington",
-                "St Helens",
-                "Liverpool",
-                "Preston",
-                "Blackburn",
-                "Burnley",
-                "Blackpool",
-                "Chester",
-                "Crewe",
-                "Widnes",
-                "Southport",
-              ].map((name, i, arr) => (
-                <span key={name}>
-                  {name}
+                { name: "Manchester", slug: "manchester" },
+                { name: "Salford", slug: "salford" },
+                { name: "Bolton", slug: "bolton" },
+                { name: "Wigan", slug: "wigan" },
+                { name: "Stockport", slug: "stockport" },
+                { name: "Oldham", slug: "oldham" },
+                { name: "Rochdale", slug: "rochdale" },
+                { name: "Bury", slug: "bury" },
+                { name: "Trafford", slug: "trafford" },
+                { name: "Warrington", slug: "warrington" },
+                { name: "St Helens", slug: "st-helens" },
+                { name: "Liverpool", slug: "liverpool" },
+                { name: "Preston", slug: "preston" },
+                { name: "Blackburn", slug: "blackburn" },
+                { name: "Burnley", slug: "burnley" },
+                { name: "Blackpool", slug: "blackpool" },
+                { name: "Chester", slug: "chester" },
+                { name: "Crewe", slug: "crewe" },
+                { name: "Widnes", slug: "widnes" },
+                { name: "Southport", slug: "southport" },
+              ].map((loc, i, arr) => (
+                <span key={loc.slug}>
+                  <Link
+                    href={`/loler-inspections-${loc.slug}`}
+                    className="transition-colors hover:text-white hover:underline"
+                  >
+                    {loc.name}
+                  </Link>
                   {i < arr.length - 1 && <span className="mx-1">·</span>}
                 </span>
               ))}
