@@ -178,11 +178,7 @@ export async function generateMetadata({
   const location = getLocation(parsed.locationSlug);
   if (!location) return {};
 
-  // Thin content guard: only index if we have a unique local intro
-  const localIntro = LOCAL_INTROS[`${service.slug}--${location.slug}`] ?? null;
-  const hasUniqueContent = !!localIntro;
-
-  return serviceLocationMeta(service, location, hasUniqueContent);
+  return serviceLocationMeta(service, location);
 }
 
 /* ------------------------------------------------------------------ */

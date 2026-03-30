@@ -65,7 +65,6 @@ export function serviceHubMeta(service: {
 export function serviceLocationMeta(
   service: { name: string; slug: string; shortName: string },
   location: { name: string; slug: string; county: string },
-  hasUniqueContent: boolean
 ): Metadata {
   const title = `${service.name} in ${location.name} | ${BUSINESS.name}`;
   const description = `Professional ${service.shortName} inspections in ${location.name}, ${location.county}. Experienced engineers ensuring compliance with statutory regulations. Book your inspection today.`;
@@ -75,9 +74,7 @@ export function serviceLocationMeta(
     title,
     description,
     alternates: { canonical: url },
-    robots: hasUniqueContent
-      ? { index: true, follow: true }
-      : { index: false, follow: true },
+    robots: { index: true, follow: true },
     openGraph: {
       title,
       description,
@@ -98,7 +95,6 @@ export function serviceLocationMeta(
 export function microLocationMeta(
   service: { name: string; slug: string; shortName: string },
   location: { name: string; slug: string; county: string },
-  hasUniqueContent: boolean
 ): Metadata {
   const title = `${service.name} Near ${location.name} | ${BUSINESS.name}`;
   const description = `Looking for ${service.shortName} inspections near ${location.name}? Safe Lee Inspection & Consultancy provides professional statutory inspections across ${location.county} and surrounding areas.`;
@@ -108,9 +104,7 @@ export function microLocationMeta(
     title,
     description,
     alternates: { canonical: url },
-    robots: hasUniqueContent
-      ? { index: true, follow: true }
-      : { index: false, follow: true },
+    robots: { index: true, follow: true },
     openGraph: {
       title,
       description,
