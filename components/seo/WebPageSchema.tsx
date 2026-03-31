@@ -10,18 +10,19 @@ export function WebPageSchema({ title, description, url }: WebPageSchemaProps) {
   const schema = {
     "@context": "https://schema.org",
     "@type": "WebPage",
+    "@id": `${url}#webpage`,
     name: title,
     description,
     url,
-    speakable: {
-      "@type": "SpeakableSpecification",
-      cssSelector: ["h1", "[data-speakable]"],
-    },
+    inLanguage: "en-GB",
     isPartOf: {
       "@id": `${BUSINESS.url}/#website`,
     },
     about: {
       "@id": `${BUSINESS.url}/#organization`,
+    },
+    breadcrumb: {
+      "@id": `${url}#breadcrumb`,
     },
   };
 

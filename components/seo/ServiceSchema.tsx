@@ -24,22 +24,12 @@ export function ServiceSchema({
   const schema = {
     "@context": "https://schema.org",
     "@type": "Service",
+    "@id": `${url}/#service`,
     name: locationName ? `${serviceName} in ${locationName}` : serviceName,
     serviceType: serviceName,
-    description: serviceDescription,
+    description: `${serviceDescription} Compliance with ${regulationName}.`,
     provider: {
-      "@type": "ProfessionalService",
       "@id": `${BUSINESS.url}/#organization`,
-      name: BUSINESS.name,
-      telephone: "+441617062022",
-      address: {
-        "@type": "PostalAddress",
-        streetAddress: BUSINESS.address.street,
-        addressLocality: BUSINESS.address.locality,
-        addressRegion: BUSINESS.address.city,
-        postalCode: BUSINESS.address.postalCode,
-        addressCountry: BUSINESS.address.country,
-      },
     },
     areaServed: locationName
       ? {
@@ -52,7 +42,6 @@ export function ServiceSchema({
           { "@type": "Country", name: "United Kingdom" },
         ],
     url,
-    termsOfService: regulationName,
     serviceOutput: {
       "@type": "Report",
       name: `${serviceName} Report`,
@@ -65,15 +54,8 @@ export function ServiceSchema({
         ? { "@type": "City", name: locationName }
         : { "@type": "Country", name: "United Kingdom" },
       seller: {
-        "@type": "ProfessionalService",
         "@id": `${BUSINESS.url}/#organization`,
       },
-    },
-    aggregateRating: {
-      "@type": "AggregateRating",
-      ratingValue: String(BUSINESS.googleRating),
-      bestRating: "5",
-      reviewCount: String(BUSINESS.googleReviewCount),
     },
   };
 

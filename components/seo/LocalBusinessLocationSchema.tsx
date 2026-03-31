@@ -20,7 +20,8 @@ export function LocalBusinessLocationSchema({
   const schema = {
     "@context": "https://schema.org",
     "@type": "ProfessionalService",
-    name: `${BUSINESS.name} — ${locationName}`,
+    "@id": `${pageUrl}/#localbusiness`,
+    name: BUSINESS.name,
     url: pageUrl,
     telephone: "+441617062022",
     email: BUSINESS.email,
@@ -42,20 +43,6 @@ export function LocalBusinessLocationSchema({
     },
     parentOrganization: {
       "@id": `${BUSINESS.url}/#organization`,
-    },
-    hasOfferCatalog: {
-      "@type": "OfferCatalog",
-      name: serviceName,
-      itemListElement: [
-        {
-          "@type": "Offer",
-          itemOffered: {
-            "@type": "Service",
-            name: serviceName,
-            url: `${BUSINESS.url}/${serviceSlug}`,
-          },
-        },
-      ],
     },
     aggregateRating: {
       "@type": "AggregateRating",

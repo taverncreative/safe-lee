@@ -120,91 +120,31 @@ export function SiteSchema() {
     ],
     hasOfferCatalog: {
       "@type": "OfferCatalog",
-      name: "Inspection Services",
+      name: "Statutory Inspection Services",
       itemListElement: [
         {
-          "@type": "OfferCatalog",
-          name: "PSSR Inspections",
-          itemListElement: [
-            {
-              "@type": "Offer",
-              itemOffered: {
-                "@type": "Service",
-                name: "PSSR Inspections",
-                url: `${BUSINESS.url}/pssr-inspections`,
-              },
-            },
-          ],
+          "@type": "Offer",
+          itemOffered: { "@type": "Service", name: "PSSR Inspections", url: `${BUSINESS.url}/pssr-inspections` },
         },
         {
-          "@type": "OfferCatalog",
-          name: "LOLER Inspections",
-          itemListElement: [
-            {
-              "@type": "Offer",
-              itemOffered: {
-                "@type": "Service",
-                name: "LOLER Inspections",
-                url: `${BUSINESS.url}/loler-inspections`,
-              },
-            },
-          ],
+          "@type": "Offer",
+          itemOffered: { "@type": "Service", name: "LOLER Inspections", url: `${BUSINESS.url}/loler-inspections` },
         },
         {
-          "@type": "OfferCatalog",
-          name: "WAHR Inspections",
-          itemListElement: [
-            {
-              "@type": "Offer",
-              itemOffered: {
-                "@type": "Service",
-                name: "WAHR Inspections",
-                url: `${BUSINESS.url}/wahr-inspections`,
-              },
-            },
-          ],
+          "@type": "Offer",
+          itemOffered: { "@type": "Service", name: "WAHR Inspections", url: `${BUSINESS.url}/wahr-inspections` },
         },
         {
-          "@type": "OfferCatalog",
-          name: "PUWER Inspections",
-          itemListElement: [
-            {
-              "@type": "Offer",
-              itemOffered: {
-                "@type": "Service",
-                name: "PUWER Inspections",
-                url: `${BUSINESS.url}/puwer-inspections`,
-              },
-            },
-          ],
+          "@type": "Offer",
+          itemOffered: { "@type": "Service", name: "PUWER Inspections", url: `${BUSINESS.url}/puwer-inspections` },
         },
         {
-          "@type": "OfferCatalog",
-          name: "COSHH LEV Inspections",
-          itemListElement: [
-            {
-              "@type": "Offer",
-              itemOffered: {
-                "@type": "Service",
-                name: "COSHH LEV Inspections",
-                url: `${BUSINESS.url}/coshh-lev-inspections`,
-              },
-            },
-          ],
+          "@type": "Offer",
+          itemOffered: { "@type": "Service", name: "COSHH LEV Inspections", url: `${BUSINESS.url}/coshh-lev-inspections` },
         },
         {
-          "@type": "OfferCatalog",
-          name: "Report Writing",
-          itemListElement: [
-            {
-              "@type": "Offer",
-              itemOffered: {
-                "@type": "Service",
-                name: "Report Writing",
-                url: `${BUSINESS.url}/report-writing`,
-              },
-            },
-          ],
+          "@type": "Offer",
+          itemOffered: { "@type": "Service", name: "Report Writing", url: `${BUSINESS.url}/report-writing` },
         },
       ],
     },

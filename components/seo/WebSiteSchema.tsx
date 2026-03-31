@@ -7,10 +7,19 @@ export function WebSiteSchema() {
     "@id": `${BUSINESS.url}/#website`,
     name: BUSINESS.name,
     url: BUSINESS.url,
+    inLanguage: "en-GB",
     description:
       "Professional PSSR, LOLER, WAHR, PUWER, and COSHH LEV statutory inspections and thorough examinations serving Manchester, the North West, and beyond.",
     publisher: {
       "@id": `${BUSINESS.url}/#organization`,
+    },
+    potentialAction: {
+      "@type": "SearchAction",
+      target: {
+        "@type": "EntryPoint",
+        urlTemplate: `${BUSINESS.url}/?s={search_term_string}`,
+      },
+      "query-input": "required name=search_term_string",
     },
   };
 

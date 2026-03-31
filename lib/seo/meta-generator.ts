@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
 import { BUSINESS } from "@/types";
 
-const SITE_URL =
+const SITE_URL = (
   process.env.NEXT_PUBLIC_SITE_URL ??
-  "https://www.safeleeinspectionconsultancy.com";
+  "https://www.safeleeinspectionconsultancy.com"
+).replace(/\/$/, "");
 
 /* ------------------------------------------------------------------ */
 /*  Meta generators — unique per page type                             */
