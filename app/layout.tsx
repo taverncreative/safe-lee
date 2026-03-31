@@ -13,9 +13,11 @@ const inter = Inter({
   variable: "--font-inter",
 });
 
+const isProduction = process.env.NEXT_PUBLIC_SITE_URL === "https://www.safeleeinspectionconsultancy.com";
+
 export const metadata: Metadata = {
   metadataBase: new URL(
-    process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.safeleeinspectionconsultancy.com"
+    (process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.safeleeinspectionconsultancy.com").replace(/\/$/, "")
   ),
   title: {
     default: "Safe Lee Inspection & Consultancy | Statutory Inspections Manchester",
@@ -23,7 +25,9 @@ export const metadata: Metadata = {
   },
   description:
     "Professional PSSR, LOLER, WAHR, PUWER, and COSHH LEV inspections from Safe Lee Inspection & Consultancy Ltd. Serving Manchester, the North West, and beyond.",
-  robots: { index: true, follow: true },
+  robots: isProduction
+    ? { index: true, follow: true }
+    : { index: false, follow: false },
 };
 
 export default function RootLayout({

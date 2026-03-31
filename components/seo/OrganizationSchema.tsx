@@ -4,7 +4,7 @@ export function OrganizationSchema() {
   const schema = {
     "@context": "https://schema.org",
     "@type": "Organization",
-    "@id": `${BUSINESS.url}/#company`,
+    "@id": `${BUSINESS.url}/#organization`,
     name: BUSINESS.name,
     legalName: BUSINESS.name,
     url: BUSINESS.url,

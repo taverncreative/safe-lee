@@ -40,11 +40,6 @@ import { LOCATION_INDUSTRIES } from "@/lib/content/location-industries";
 
 import { ServiceLocationPage } from "@/components/templates/ServiceLocationPage";
 
-/* Static page imports — Turbopack dev workaround for routing overlap */
-import ContactPageContent from "@/app/contact-us/page";
-import AccessibilityPageContent from "@/app/accessibility-statement/page";
-import PrivacyPageContent from "@/app/privacy-policy/page";
-import TermsPageContent from "@/app/terms-and-conditions/page";
 
 
 /* LOCATIONS imported from @/lib/content/locations */
@@ -191,16 +186,6 @@ export default async function Page({
   params: Promise<{ serviceLocation: string }>;
 }) {
   const { serviceLocation: slug } = await params;
-
-  /* Handle static pages that Turbopack routes here in dev mode */
-  const STATIC_PAGE_MAP: Record<string, React.ComponentType> = {
-    "contact-us": ContactPageContent,
-    "accessibility-statement": AccessibilityPageContent,
-    "privacy-policy": PrivacyPageContent,
-    "terms-and-conditions": TermsPageContent,
-  };
-  const StaticPage = STATIC_PAGE_MAP[slug];
-  if (StaticPage) return <StaticPage />;
 
   const parsed = parseSlug(slug);
   if (!parsed) notFound();

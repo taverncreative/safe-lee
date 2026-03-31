@@ -1,8 +1,9 @@
 import type { MetadataRoute } from "next";
 import { SERVICE_SEED, PSEO_SERVICE_SLUGS } from "@/lib/content/service-data";
 import { LOCATIONS } from "@/lib/content/locations";
+import { BUSINESS } from "@/types";
 
-const BASE_URL = "https://www.safeleeinspectionconsultancy.com";
+const BASE_URL = BUSINESS.url;
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date();
@@ -62,12 +63,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
         lastModified: now,
         changeFrequency: "monthly",
         priority: 0.7,
-      });
-      locationPages.push({
-        url: `${BASE_URL}/${serviceSlug}-near-${location.slug}`,
-        lastModified: now,
-        changeFrequency: "monthly",
-        priority: 0.6,
       });
     }
   }
