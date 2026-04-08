@@ -1,6 +1,7 @@
 import type { MetadataRoute } from "next";
 import { SERVICE_SEED, PSEO_SERVICE_SLUGS } from "@/lib/content/service-data";
 import { LOCATIONS } from "@/lib/content/locations";
+import { COUNTIES } from "@/lib/content/county-data";
 import { BUSINESS } from "@/types";
 
 const BASE_URL = BUSINESS.url;
@@ -53,6 +54,20 @@ export default function sitemap(): MetadataRoute.Sitemap {
     })
   );
 
+  /* ---- County hub pages ---- */
+  const countyHubPages: MetadataRoute.Sitemap = [];
+
+  for (const serviceSlug of PSEO_SERVICE_SLUGS) {
+    for (const county of COUNTIES) {
+      countyHubPages.push({
+        url: `${BASE_URL}/${serviceSlug}-${county.slug}`,
+        lastModified: now,
+        changeFrequency: "monthly",
+        priority: 0.8,
+      });
+    }
+  }
+
   /* ---- pSEO service + location pages ---- */
   const locationPages: MetadataRoute.Sitemap = [];
 
@@ -67,5 +82,5 @@ export default function sitemap(): MetadataRoute.Sitemap {
     }
   }
 
-  return [...staticPages, ...serviceHubPages, ...locationPages];
+  return [...staticPages, ...serviceHubPages, ...countyHubPages, ...locationPages];
 }

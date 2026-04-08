@@ -75,7 +75,6 @@ export function serviceLocationMeta(
     title,
     description,
     alternates: { canonical: url },
-    robots: { index: true, follow: true },
     openGraph: {
       title,
       description,
@@ -93,32 +92,24 @@ export function serviceLocationMeta(
   };
 }
 
-export function microLocationMeta(
-  service: { name: string; slug: string; shortName: string },
-  location: { name: string; slug: string; county: string },
+export function countyHubMeta(
+  service: { name: string; slug: string },
+  county: { name: string; slug: string },
 ): Metadata {
-  const title = `${service.name} Near ${location.name} | ${BUSINESS.name}`;
-  const description = `Looking for ${service.shortName} inspections near ${location.name}? Safe Lee Inspection & Consultancy provides professional statutory inspections across ${location.county} and surrounding areas.`;
-  const url = `${SITE_URL}/${service.slug}-near-${location.slug}`;
+  const title = `${service.name} in ${county.name} | ${BUSINESS.name}`;
+  const description = `Professional ${service.name.toLowerCase()} across all major towns in ${county.name}. Safe Lee Inspection & Consultancy — competent person examinations, fast report turnaround.`;
+  const url = `${SITE_URL}/${service.slug}-${county.slug}`;
 
   return {
     title,
     description,
     alternates: { canonical: url },
-    robots: { index: true, follow: true },
     openGraph: {
       title,
       description,
       url,
       siteName: BUSINESS.name,
       type: "website",
-      images: [
-        {
-          url: `${SITE_URL}/api/og?service=${encodeURIComponent(service.name)}&location=${encodeURIComponent(location.name)}&near=1`,
-          width: 1200,
-          height: 630,
-        },
-      ],
     },
   };
 }

@@ -1,6 +1,13 @@
 /* ------------------------------------------------------------------ */
 /*  Location-specific FAQs — unique questions referencing real local   */
 /*  industrial estates, employers, and business context                */
+/*                                                                      */
+/*  Two-tier system:                                                    */
+/*  1. SERVICE_LOCATION_FAQS — keyed "service--location", highest pri  */
+/*  2. LOCATION_FAQS — keyed by location only, filtered by service     */
+/*                                                                      */
+/*  Use selectFaqsForPage(serviceSlug, locationSlug) to retrieve FAQs  */
+/*  for a given page. Returns up to 3 FAQs in priority order.          */
 /* ------------------------------------------------------------------ */
 
 export interface LocationFAQ {
@@ -546,3 +553,137 @@ export const LOCATION_FAQS: Record<string, LocationFAQ[]> = {
     },
   ],
 };
+
+/* ------------------------------------------------------------------ */
+/*  Service + location specific FAQs — highest priority tier           */
+/*  Key format: "service-slug--location-slug"                          */
+/* ------------------------------------------------------------------ */
+
+export const SERVICE_LOCATION_FAQS: Record<string, LocationFAQ[]> = {
+  /* ---- LOLER Manchester (warehousing / distribution focus) ---- */
+  "loler-inspections--manchester": [
+    {
+      question:
+        "How often must forklifts at Trafford Park distribution centres be examined under LOLER?",
+      answer:
+        "Forklifts used purely for goods handling at Trafford Park and other Manchester distribution centres require a thorough examination by a competent person at least every 12 months under LOLER 1998. Where a forklift is fitted with an attachment that can carry a person — such as a work platform cage — the examination interval drops to every six months. Many insurers and responsible operators arrange six-monthly examinations for all fork lift trucks regardless, as this supports insurance renewal and demonstrates due diligence to the HSE.",
+    },
+    {
+      question:
+        "Do lifting accessories like chains and slings used in Manchester warehouses need separate LOLER inspections?",
+      answer:
+        "Yes. Lifting accessories — including wire rope slings, chain slings, shackles, eyebolts, and hook blocks — are separately regulated under LOLER 1998 and must be thoroughly examined by a competent person every six months regardless of how frequently they are used. This is one of the most commonly overlooked compliance gaps in Manchester's warehousing and logistics sector. A thorough examination of the forklift truck itself does not cover the accessories used with it.",
+    },
+    {
+      question:
+        "Are dock levellers at Manchester logistics sites classed as lifting equipment under LOLER?",
+      answer:
+        "Yes. Powered dock levellers are lifting equipment within the meaning of LOLER 1998 and require thorough examination at least every 12 months. Given the volume of logistics and distribution operations at Trafford Park and other Manchester industrial estates — where dock levellers operate under heavy daily use — maintaining current examination records is a practical compliance requirement as well as a legal one. Safe Lee carries out LOLER examinations of dock levellers and all associated loading bay equipment.",
+    },
+  ],
+
+  /* ---- COSHH LEV Manchester (manufacturing / welding fume focus) ---- */
+  "coshh-lev-inspections--manchester": [
+    {
+      question:
+        "What COSHH LEV testing intervals apply to welding fume extraction at Manchester manufacturing sites?",
+      answer:
+        "Under COSHH 2002, all Local Exhaust Ventilation systems used to control welding fume must be thoroughly examined and tested at least every 14 months. This is a minimum requirement — the HSE's EH40 guidance strongly recommends more frequent checks for high-use extraction systems in busy welding bays. The 2019 revision to WEL guidance reclassified all welding fume (including mild steel) as a Group 1 carcinogen, significantly increasing HSE enforcement activity in Manchester's manufacturing sector. An LEV system that was adequate at installation may fail to achieve original design parameters due to duct blockage, fan wear, or filter saturation.",
+    },
+    {
+      question:
+        "Does a paint spray booth at a Manchester bodyshop or manufacturer need annual LEV testing?",
+      answer:
+        "Yes. Spray paint booths used in vehicle refinishing and manufacturing operations are among the LEV systems most frequently identified by the HSE as failing at examination. Under COSHH 2002, they must be tested at least every 14 months. For booths used for isocyanate-based paints — the most common in vehicle refinishing — HSE guidance treats these as a higher-risk process, and the examination should verify airflow meets the design specification across the full face of the working zone. Safe Lee tests spray booths throughout Greater Manchester.",
+    },
+    {
+      question:
+        "Is a dust extraction system on a woodworking line at a Trafford Park factory classed as LEV under COSHH?",
+      answer:
+        "Yes. Dust extraction systems fitted to woodworking machinery — including band saws, routers, spindle moulders, and CNC routing centres — are Local Exhaust Ventilation systems within the scope of COSHH 2002. They must be thoroughly examined and tested by a competent person at least every 14 months. Hardwood and MDF dust are both classified as hazardous to health, and an extraction system operating below its design airflow provides inadequate protection even when running. The examination must verify capture velocity, duct condition, filter integrity, and fan performance.",
+    },
+  ],
+
+  /* ---- PSSR Liverpool (food production / steam focus) ---- */
+  "pssr-inspections--liverpool": [
+    {
+      question:
+        "What does a Written Scheme of Examination cover for a steam system at a Liverpool food factory?",
+      answer:
+        "A Written Scheme of Examination under PSSR 2000 for a food production steam system must identify every pressure vessel, steam boiler, heat exchanger, and all associated pipework, safety valves, and protective devices that fall within its scope. For each item, the scheme specifies the nature of the examination required, the maximum interval between examinations, and any preparatory work needed before examination takes place — such as draining, cooling, or lagging removal. The scheme must be prepared or certified by a competent person and reviewed whenever there is a change in the system or its operation. Liverpool's food and drink manufacturers — many of whom operate on Knowsley Industrial Park and at Speke — use steam extensively in cooking, sterilisation, and CIP cleaning cycles, making current Written Schemes a practical operational necessity as well as a legal one.",
+    },
+    {
+      question:
+        "How often do autoclaves used in food packaging at Liverpool factories need PSSR inspections?",
+      answer:
+        "The inspection interval for an autoclave at a Liverpool food packaging facility is determined by the Written Scheme of Examination prepared by a competent person — there is no fixed statutory interval that applies to all autoclaves. In practice, most food-grade autoclaves are examined every 12 to 26 months depending on their operating pressure, age, and condition history. Where an autoclave operates under elevated pressures or temperatures, or has a history of corrosion or creep, the competent person will set shorter intervals. The examination must be completed before the interval expires — production schedules do not provide a legal extension.",
+    },
+    {
+      question:
+        "Does a compressed air system used for pneumatic food handling equipment at a Knowsley site need PSSR inspection?",
+      answer:
+        "Yes. Compressed air systems — including compressors, air receivers, aftercoolers, and associated pipework — fall within the scope of PSSR 2000 wherever the stored energy and pressure exceed the regulations' threshold. This applies to pneumatic handling equipment, filling lines, and packaging machinery on food production sites at Knowsley Industrial Park and across the Liverpool area. A competent person must prepare a Written Scheme covering the air receiver and any vessels downstream of the compressor, and the system must be examined at the intervals the scheme specifies.",
+    },
+  ],
+};
+
+/* ------------------------------------------------------------------ */
+/*  Service relevance keywords — used to filter LOCATION_FAQS when    */
+/*  no SERVICE_LOCATION_FAQS entry exists for the page                 */
+/* ------------------------------------------------------------------ */
+
+const SERVICE_FAQ_KEYWORDS: Record<string, string[]> = {
+  "pssr-inspections": [
+    "pssr", "pressure", "boiler", "autoclave", "compressor",
+    "steam", "written scheme", "air receiver",
+  ],
+  "loler-inspections": [
+    "loler", "lifting", "forklift", "crane", "hoist", "lift",
+    "sling", "chain", "dock leveller",
+  ],
+  "wahr-inspections": [
+    "wahr", "height", "scaffold", "harness", "fall", "mewp",
+    "ladder", "tower", "guardrail",
+  ],
+  "puwer-inspections": [
+    "puwer", "work equipment", "machinery", "press", "conveyor",
+    "guarding", "machine", "lathe", "cnc",
+  ],
+  "coshh-lev-inspections": [
+    "coshh", "lev", "extraction", "ventilation", "fume",
+    "dust", "spray", "hazardous", "exhaust",
+  ],
+};
+
+/* ------------------------------------------------------------------ */
+/*  selectFaqsForPage                                                   */
+/*  Priority order:                                                     */
+/*  1. SERVICE_LOCATION_FAQS["service--location"]                      */
+/*  2. LOCATION_FAQS[location] filtered by service keywords            */
+/*  3. All LOCATION_FAQS[location] entries (unfiltered fallback)       */
+/* ------------------------------------------------------------------ */
+
+export function selectFaqsForPage(
+  serviceSlug: string,
+  locationSlug: string,
+  limit = 3
+): LocationFAQ[] {
+  // 1. Most specific — service + location pair
+  const specific = SERVICE_LOCATION_FAQS[`${serviceSlug}--${locationSlug}`];
+  if (specific?.length) return specific.slice(0, limit);
+
+  // 2. Filter location FAQs by service keywords
+  const locationFaqs = LOCATION_FAQS[locationSlug] ?? [];
+  const keywords = SERVICE_FAQ_KEYWORDS[serviceSlug] ?? [];
+
+  if (keywords.length && locationFaqs.length) {
+    const filtered = locationFaqs.filter((faq) => {
+      const text = `${faq.question} ${faq.answer}`.toLowerCase();
+      return keywords.some((kw) => text.includes(kw));
+    });
+    if (filtered.length) return filtered.slice(0, limit);
+  }
+
+  // 3. Return general location FAQs — better than nothing
+  return locationFaqs.slice(0, limit);
+}

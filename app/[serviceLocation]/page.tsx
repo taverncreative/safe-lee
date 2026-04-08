@@ -1,15 +1,13 @@
 /* ------------------------------------------------------------------ */
 /*  [serviceLocation]/page.tsx — pSEO catch-all route                  */
 /*                                                                      */
-/*  Handles service+location pages from a single dynamic segment:       */
-/*    /pssr-inspections-manchester      → service + location            */
-/*    /pssr-inspections-near-manchester → 301 redirect to non-near URL  */
+/*  Handles three URL patterns from a single dynamic segment:           */
+/*    /pssr-inspections-manchester         → service + location page    */
+/*    /loler-inspections-greater-manchester → county hub page           */
+/*    /pssr-inspections-near-manchester    → 301 redirect               */
 /*                                                                      */
-/*  Service hub pages (/pssr-inspections etc.) are now handled by       */
-/*  their own static routes under app/<slug>/page.tsx.                  */
-/*                                                                      */
-/*  CRITICAL: All DB calls are wrapped in try/catch so the site works   */
-/*  without a database connection. SERVICE_SEED is the source of truth. */
+/*  Service hub pages (/pssr-inspections etc.) are handled by their     */
+/*  own static routes under app/<slug>/page.tsx.                        */
 /* ------------------------------------------------------------------ */
 
 import type { Metadata } from "next";
@@ -31,48 +29,55 @@ const STATIC_SLUGS = new Set([
 
 import { SERVICE_SEED, PSEO_SERVICE_SLUGS } from "@/lib/content/service-data";
 import { LOCATIONS } from "@/lib/content/locations";
-import { serviceLocationMeta } from "@/lib/seo/meta-generator";
+import { serviceLocationMeta, countyHubMeta } from "@/lib/seo/meta-generator";
 
 import { LOCAL_INTROS } from "@/lib/content/local-intros";
 import { LOCATION_DATA } from "@/lib/content/location-data";
-import { LOCATION_FAQS } from "@/lib/content/location-faqs";
+import { selectFaqsForPage } from "@/lib/content/location-faqs";
 import { LOCATION_INDUSTRIES } from "@/lib/content/location-industries";
+import { generateCompositeIntro } from "@/lib/content/generated-intro";
+import { COUNTY_BY_SLUG, COUNTY_SLUGS, getLocationsForCounty } from "@/lib/content/county-data";
 
 import { ServiceLocationPage } from "@/components/templates/ServiceLocationPage";
-
-
-
-/* LOCATIONS imported from @/lib/content/locations */
+import { CountyHubPage } from "@/components/templates/CountyHubPage";
 
 /* ------------------------------------------------------------------ */
 /*  Route parser                                                        */
 /* ------------------------------------------------------------------ */
 
-function parseSlug(
-  slug: string
-): { type: "service-location" | "near-redirect"; serviceSlug: string; locationSlug: string } | null {
-  // Check "near" pattern first — redirect these to the non-near URL
-  for (const svcSlug of PSEO_SERVICE_SLUGS) {
-    const nearPrefix = `${svcSlug}-near-`;
-    if (slug.startsWith(nearPrefix)) {
-      const locationSlug = slug.slice(nearPrefix.length);
+type ParsedSlug =
+  | { type: "service-location"; serviceSlug: string; locationSlug: string }
+  | { type: "county-hub"; serviceSlug: string; countySlug: string }
+  | { type: "near-redirect"; serviceSlug: string; locationSlug: string };
+
+function parseSlug(slug: string): ParsedSlug | null {
+  // Longest service slugs first to avoid prefix ambiguity
+  const sortedSlugs = [...PSEO_SERVICE_SLUGS].sort(
+    (a, b) => b.length - a.length
+  );
+
+  for (const svcSlug of sortedSlugs) {
+    const prefix = `${svcSlug}-`;
+    if (!slug.startsWith(prefix)) continue;
+
+    const remainder = slug.slice(prefix.length);
+
+    // "near" redirect pattern
+    if (remainder.startsWith("near-")) {
+      const locationSlug = remainder.slice("near-".length);
       if (LOCATIONS.find((l) => l.slug === locationSlug)) {
         return { type: "near-redirect", serviceSlug: svcSlug, locationSlug };
       }
     }
-  }
 
-  // Check service+location pattern — iterate longest slugs first
-  const sortedSlugs = [...PSEO_SERVICE_SLUGS].sort(
-    (a, b) => b.length - a.length
-  );
-  for (const svcSlug of sortedSlugs) {
-    const prefix = `${svcSlug}-`;
-    if (slug.startsWith(prefix)) {
-      const locationSlug = slug.slice(prefix.length);
-      if (LOCATIONS.find((l) => l.slug === locationSlug)) {
-        return { type: "service-location", serviceSlug: svcSlug, locationSlug };
-      }
+    // County hub pattern
+    if (COUNTY_SLUGS.includes(remainder)) {
+      return { type: "county-hub", serviceSlug: svcSlug, countySlug: remainder };
+    }
+
+    // Service + location pattern
+    if (LOCATIONS.find((l) => l.slug === remainder)) {
+      return { type: "service-location", serviceSlug: svcSlug, locationSlug: remainder };
     }
   }
 
@@ -164,11 +169,16 @@ export async function generateMetadata({
   const parsed = parseSlug(slug);
   if (!parsed) return {};
 
-  // Near-redirect pages don't need metadata — they redirect
   if (parsed.type === "near-redirect") return {};
 
   const service = getService(parsed.serviceSlug);
   if (!service) return {};
+
+  if (parsed.type === "county-hub") {
+    const county = COUNTY_BY_SLUG[parsed.countySlug];
+    if (!county) return {};
+    return countyHubMeta(service, county);
+  }
 
   const location = getLocation(parsed.locationSlug);
   if (!location) return {};
@@ -198,6 +208,26 @@ export default async function Page({
   const service = getService(parsed.serviceSlug);
   if (!service) notFound();
 
+  // ---- County hub ----
+  if (parsed.type === "county-hub") {
+    const county = COUNTY_BY_SLUG[parsed.countySlug];
+    if (!county) notFound();
+
+    const countyLocations = getLocationsForCounty(county.name).map((l) => ({
+      name: l.name,
+      slug: l.slug,
+    }));
+
+    return (
+      <CountyHubPage
+        service={service}
+        county={county}
+        locations={countyLocations}
+      />
+    );
+  }
+
+  // ---- Service + location ----
   const location = getLocation(parsed.locationSlug);
   if (!location) notFound();
 
@@ -215,14 +245,26 @@ export default async function Page({
   // Wire up enrichment data
   const localIntro = LOCAL_INTROS[`${service.slug}--${location.slug}`] ?? null;
   const locationData = LOCATION_DATA[location.slug] ?? null;
-  const locationFaqs = LOCATION_FAQS[location.slug] ?? [];
+  const locationFaqs = selectFaqsForPage(service.slug, location.slug);
   const locationIndustries = LOCATION_INDUSTRIES[location.slug] ?? [];
+
+  // Fallback: generate composite intro for pages without a handwritten LOCAL_INTRO
+  const effectiveIntro =
+    localIntro ??
+    (locationData
+      ? generateCompositeIntro(
+          { name: service.name, slug: service.slug, regulationName: service.regulationName },
+          { name: location.name, slug: location.slug, county: location.county },
+          locationData,
+          locationIndustries
+        )
+      : null);
 
   return (
     <ServiceLocationPage
       service={service}
       location={location}
-      localIntro={localIntro}
+      localIntro={effectiveIntro}
       locationData={locationData}
       locationFaqs={locationFaqs}
       locationIndustries={locationIndustries}

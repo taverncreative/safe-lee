@@ -19,7 +19,7 @@ export function LocalBusinessLocationSchema({
 
   const schema = {
     "@context": "https://schema.org",
-    "@type": "ProfessionalService",
+    "@type": "LocalBusiness",
     "@id": `${pageUrl}/#localbusiness`,
     name: BUSINESS.name,
     url: pageUrl,

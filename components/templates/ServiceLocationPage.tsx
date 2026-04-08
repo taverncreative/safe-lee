@@ -145,6 +145,7 @@ export function ServiceLocationPage({
       locationName={location.name}
       serviceName={service.name}
       locationData={locationData ?? undefined}
+      pageHref={`/${service.slug}-${location.slug}`}
     />
   ) : null;
 

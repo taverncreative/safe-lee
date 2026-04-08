@@ -13,14 +13,6 @@ export function WebSiteSchema() {
     publisher: {
       "@id": `${BUSINESS.url}/#organization`,
     },
-    potentialAction: {
-      "@type": "SearchAction",
-      target: {
-        "@type": "EntryPoint",
-        urlTemplate: `${BUSINESS.url}/?s={search_term_string}`,
-      },
-      "query-input": "required name=search_term_string",
-    },
   };
 
   return (

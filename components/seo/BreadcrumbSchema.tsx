@@ -15,7 +15,7 @@ export function BreadcrumbSchema({ items }: BreadcrumbSchemaProps) {
       "@type": "ListItem",
       position: index + 1,
       name: item.name,
-      item: `${BUSINESS.url}${item.href}`,
+      item: item.href === "/" ? BUSINESS.url : `${BUSINESS.url}${item.href}`,
     })),
   };
 

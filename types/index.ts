@@ -114,7 +114,7 @@ export const BUSINESS = {
   mobile: "+44746 3049866",
   socials: {
     facebook: "https://www.facebook.com/profile.php?id=100083171920043",
-    linkedin: "https://www.linkedin.com/safeLeeinspection&ConsultanctLtd",
+    linkedin: "https://www.linkedin.com/company/safe-lee-inspection-consultancy/",
     x: "https://x.com/lee_safe",
   },
   address: {

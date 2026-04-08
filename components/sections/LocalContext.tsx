@@ -1,12 +1,15 @@
 import { Reveal } from "@/components/ui/Reveal";
 import { MapPin, Building2 } from "lucide-react";
 import type { LocationEnrichment } from "@/lib/content/location-data";
+import { injectContextualLinks } from "@/lib/seo/inject-contextual-links";
 
 interface LocalContextProps {
   content: string;
   locationName: string;
   serviceName: string;
   locationData?: LocationEnrichment;
+  /** Current page path — used to auto-link service keywords without self-linking */
+  pageHref?: string;
 }
 
 export function LocalContext({
@@ -14,6 +17,7 @@ export function LocalContext({
   locationName,
   serviceName,
   locationData,
+  pageHref,
 }: LocalContextProps) {
   // Split multi-paragraph content on double newlines
   const paragraphs = content
@@ -33,7 +37,11 @@ export function LocalContext({
         <Reveal delay={0.1}>
           <div className="prose prose-lg mt-8 max-w-none text-sl-gray-700 prose-headings:font-heading prose-headings:text-sl-gray-900 prose-a:text-sl-red prose-a:underline hover:prose-a:text-sl-red-dark">
             {paragraphs.map((paragraph, i) => (
-              <p key={i}>{paragraph}</p>
+              <p key={i}>
+                {pageHref
+                  ? injectContextualLinks(paragraph, pageHref)
+                  : paragraph}
+              </p>
             ))}
           </div>
         </Reveal>
