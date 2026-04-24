@@ -17,6 +17,11 @@ export default function ContactPage() {
         title="Contact Us | Safe Lee Inspection & Consultancy"
         description="Get in touch with Safe Lee Inspection & Consultancy Ltd for a free, no-obligation quote on statutory inspections across Manchester and the North West."
         url={`${BUSINESS.url}/contact-us`}
+        mainEntityId={`${BUSINESS.url}/#organization`}
+        primaryImage={{
+          url: `${BUSINESS.url}/images/Van Photos/WhatsApp Image 2025-12-09 at 17.40.34.jpeg`,
+          caption: "Safe Lee Inspection & Consultancy branded van",
+        }}
       />
 
       {/* Page Header — photo hero with dark overlay */}

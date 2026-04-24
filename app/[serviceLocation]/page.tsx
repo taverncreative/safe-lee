@@ -33,7 +33,7 @@ import { serviceLocationMeta, countyHubMeta } from "@/lib/seo/meta-generator";
 
 import { LOCAL_INTROS } from "@/lib/content/local-intros";
 import { LOCATION_DATA } from "@/lib/content/location-data";
-import { selectFaqsForPage } from "@/lib/content/location-faqs";
+import { selectFaqsForPage, selectCountyFaqsForPage } from "@/lib/content/location-faqs";
 import { LOCATION_INDUSTRIES } from "@/lib/content/location-industries";
 import { generateCompositeIntro } from "@/lib/content/generated-intro";
 import { COUNTY_BY_SLUG, COUNTY_SLUGS, getLocationsForCounty } from "@/lib/content/county-data";
@@ -218,11 +218,14 @@ export default async function Page({
       slug: l.slug,
     }));
 
+    const countyFaqs = selectCountyFaqsForPage(service.slug, parsed.countySlug);
+
     return (
       <CountyHubPage
         service={service}
         county={county}
         locations={countyLocations}
+        faqs={countyFaqs}
       />
     );
   }

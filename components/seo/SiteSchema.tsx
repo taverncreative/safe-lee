@@ -15,7 +15,16 @@ export function SiteSchema() {
     logo: `${BUSINESS.url}/images/Logos/Logo For Footer.png`,
     image: `${BUSINESS.url}/images/HERO.webp`,
     founder: {
+      /*
+       * Addressable Person entity for Lee Charnock.
+       * @id "/#founder" is a stable fragment shared with OrganizationSchema —
+       * JSON-LD processors merge both declarations into one Person node.
+       * No standalone PersonSchema component is warranted because Lee is not
+       * visibly named in any page section; this inline node is the correct
+       * home for the structured data.
+       */
       "@type": "Person",
+      "@id": `${BUSINESS.url}/#founder`,
       name: BUSINESS.founder,
       jobTitle: "Managing Director",
     },

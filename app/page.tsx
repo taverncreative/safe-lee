@@ -7,6 +7,7 @@ import { FAQAccordion } from "@/components/sections/FAQAccordion";
 import { Reveal } from "@/components/ui/Reveal";
 import { OrganizationSchema } from "@/components/seo/OrganizationSchema";
 import { WebPageSchema } from "@/components/seo/WebPageSchema";
+import { FAQSchema } from "@/components/seo/FAQSchema";
 import { BUSINESS } from "@/types";
 import { homePageMeta } from "@/lib/seo/meta-generator";
 import { GOOGLE_REVIEWS } from "@/lib/content/reviews";
@@ -91,10 +92,16 @@ export default function Home() {
   return (
     <>
       <OrganizationSchema />
+      <FAQSchema faqs={faqs} pageUrl={BUSINESS.url} />
       <WebPageSchema
         title="Safe Lee Inspection & Consultancy | Statutory Inspections Manchester"
         description="Professional PSSR, LOLER, WAHR, PUWER, and COSHH LEV inspections from Safe Lee Inspection & Consultancy Ltd. Serving Manchester, the North West, and beyond."
         url={BUSINESS.url}
+        mainEntityId={`${BUSINESS.url}/#organization`}
+        primaryImage={{
+          url: `${BUSINESS.url}/images/HERO.webp`,
+          caption: "Statutory inspection engineer examining industrial equipment — Safe Lee Inspection & Consultancy",
+        }}
       />
 
       {/* 1. Hero */}

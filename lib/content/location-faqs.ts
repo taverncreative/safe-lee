@@ -271,9 +271,9 @@ export const LOCATION_FAQS: Record<string, LocationFAQ[]> = {
     },
     {
       question:
-        "How close is SafeLee to Leigh for inspection services?",
+        "How often must forklifts and overhead cranes at Leigh industrial sites be examined under LOLER?",
       answer:
-        "SafeLee is based in nearby Irlam, just a short drive from Leigh via the A57 and East Lancashire Road. This means we can often offer same-day or next-day inspection visits to businesses on Leigh Commerce Park, Butts Mill Way, and the surrounding Wigan borough area.",
+        "Under LOLER 1998, forklifts and overhead cranes at Leigh's industrial sites used for goods handling must be thoroughly examined by a competent person at least every 12 months. Any lifting equipment used to carry people — including scissor lifts, goods lifts with passenger capacity, and forklifts fitted with working platform attachments — must be examined every 6 months. Lifting accessories such as chains, slings, shackles, and eyebolts must be examined every 6 months regardless of how frequently they are used. SafeLee provides LOLER examinations across the Leigh and Wigan borough area.",
     },
   ],
 
@@ -604,6 +604,94 @@ export const SERVICE_LOCATION_FAQS: Record<string, LocationFAQ[]> = {
     },
   ],
 
+  /* ---- LOLER Warrington (Omega / logistics focus) ---- */
+  "loler-inspections--warrington": [
+    {
+      question:
+        "How often must forklifts and reach trucks at Omega Business Park be examined under LOLER?",
+      answer:
+        "Forklifts and reach trucks at Omega Business Park distribution centres used purely for goods handling must be thoroughly examined by a competent person at least every 12 months under LOLER 1998. Where a fork lift truck is fitted with a working platform attachment enabling it to carry a person, the interval reduces to every 6 months. Given the scale of logistics operations at Omega — one of Europe's largest business parks at 575 acres — many operators arrange six-monthly examinations for their entire fleet to align with insurance renewal requirements and to demonstrate ongoing due diligence to the HSE.",
+    },
+    {
+      question:
+        "Are dock levellers at Warrington distribution centres classed as lifting equipment under LOLER?",
+      answer:
+        "Yes. Powered dock levellers at Warrington's major distribution centres — including those at Omega and Birchwood — are lifting equipment within the scope of LOLER 1998 and require thorough examination by a competent person at least every 12 months. This is among the most frequently overlooked compliance gaps in logistics operations: dock levellers are often maintained for mechanical reliability but are not formally examined under LOLER. A dock leveller examination is separate from and in addition to general maintenance. Safe Lee examines dock levellers and all associated loading bay lifting equipment across the Warrington area.",
+    },
+    {
+      question:
+        "Do VNA trucks and order pickers in Warrington high-bay warehouses need separate LOLER examinations?",
+      answer:
+        "Yes. Very narrow aisle (VNA) trucks and order pickers used in high-bay warehouses at Omega and Birchwood Park are lifting equipment under LOLER 1998 and require thorough examinations at least every 12 months. Where these vehicles are equipped with operator platforms that rise with the mast — meaning the operator is lifted as part of the normal operation — they must be examined every 6 months. The distinction between equipment that lifts only goods and equipment that can lift an operator is a critical compliance point in high-bay warehousing and is frequently misapplied by operators.",
+    },
+  ],
+
+  /* ---- PSSR Widnes (chemical manufacturing focus) ---- */
+  "pssr-inspections--widnes": [
+    {
+      question:
+        "What does a Written Scheme of Examination cover for pressure systems at a Widnes chemical plant?",
+      answer:
+        "A Written Scheme of Examination under PSSR 2000 for a Widnes chemical plant must identify every pressure vessel, heat exchanger, reactor vessel, distillation column, compressed gas system, and all associated pipework, safety valves, pressure gauges, and protective devices within its scope. For each item, the scheme specifies the nature and scope of the examination, the maximum interval between examinations, and any preparatory work needed — such as emptying, purging, cooling, or temporary isolation. Given the process conditions at Widnes chemical sites — elevated temperatures, corrosive media, and high pressures — a competent person will typically set shorter examination intervals and may specify enhanced examination techniques such as ultrasonic thickness measurement or boroscope inspection.",
+    },
+    {
+      question:
+        "How often must pressure relief valves at Widnes chemical manufacturers be inspected under PSSR?",
+      answer:
+        "The inspection frequency for pressure relief valves at Widnes chemical plants is determined by the Written Scheme of Examination prepared by a competent person — there is no fixed statutory interval applicable to all relief valves. In practice, pressure relief valves on chemical process plant are typically subject to annual functional testing and periodic strip-down examination. For valves protecting vessels containing highly toxic, flammable, or corrosive substances — common throughout Widnes's chemical manufacturing corridor — the competent person may specify more frequent examinations or enhanced in-situ testing. The valve must be verified as capable of lifting at the correct set pressure and reseating cleanly, with the examination completed before the interval specified in the scheme expires.",
+    },
+    {
+      question:
+        "Does PSSR 2000 apply to process vessels at 3MG Widnes Freeport?",
+      answer:
+        "Yes. PSSR 2000 applies to any pressure system at 3MG Widnes Freeport — or elsewhere in the Widnes chemical manufacturing corridor — where a pressure vessel or associated pipework contains a relevant fluid at pressures exceeding the regulations' threshold. This includes compressed air systems used in pneumatic handling and process control, process vessels, steam systems, and hydraulic test rigs. A competent person must prepare a Written Scheme of Examination covering these systems, and they must be examined at the specified intervals. Safe Lee provides PSSR inspection and Written Scheme services for chemical and industrial businesses across the Widnes area.",
+    },
+  ],
+
+  /* ---- COSHH LEV Stoke-on-Trent (ceramics / silica dust focus) ---- */
+  "coshh-lev-inspections--stoke-on-trent": [
+    {
+      question:
+        "What LEV testing is required for silica dust extraction at a Stoke-on-Trent pottery manufacturer?",
+      answer:
+        "Under COSHH 2002, any LEV system used to control silica dust at a Stoke-on-Trent ceramics manufacturer — including clay preparation areas, glaze mixing rooms, and kiln loading zones — must be thoroughly examined and tested by a competent person at least every 14 months. Silica dust is classified by the HSE as a Group 1 carcinogen, making it one of the highest-priority substances for LEV compliance. The examination must verify capture velocity at each hood, measure airflow through the system, check duct condition and integrity, test fan performance, and confirm filter condition. An extraction system that was adequate at installation may fail to meet design parameters due to duct blockage, hood repositioning, or filter saturation — making the 14-month examination a genuine protection measure, not a box-ticking exercise.",
+    },
+    {
+      question:
+        "Does a spray glazing booth at a Stoke-on-Trent ceramics manufacturer need LEV testing under COSHH?",
+      answer:
+        "Yes. Spray glazing booths at Stoke-on-Trent ceramics manufacturers must be thoroughly examined and tested at least every 14 months under COSHH 2002. Where glaze spraying uses substances containing heavy metals — including lead or barium compounds used in some specialist glazes — the HSE treats these as higher-risk processes, and the examination should verify that the booth maintains its design face velocity across the full working opening. The examination must also confirm that the recirculation or discharge filter is in good condition and that the airflow is sufficient to prevent glaze mist from reaching the operator's breathing zone. Safe Lee provides COSHH LEV testing for ceramics manufacturers across Stoke-on-Trent.",
+    },
+    {
+      question:
+        "Do fettling and clay-turning areas at Stoke-on-Trent potteries need LEV testing?",
+      answer:
+        "Yes. Fettling, turning, and finishing operations at Stoke-on-Trent pottery manufacturers generate respirable silica dust — one of the most hazardous dust fractions under COSHH 2002. Any LEV system controlling dust from these operations must be thoroughly examined and tested at least every 14 months. This includes downdraft benches, hood-equipped turning lathes, and centralised duct systems capturing dust from multiple workstations. The examination must assess whether the LEV is achieving adequate capture at each dust generation point — which requires measurement of capture velocity at the dust source, not just measurement of duct velocity at a convenient access point.",
+    },
+  ],
+
+  /* ---- WAHR Barrow-in-Furness (BAE Systems submarine construction focus) ---- */
+  "wahr-inspections--barrow-in-furness": [
+    {
+      question:
+        "What WAHR inspection requirements apply to scaffolding used during submarine construction at BAE Barrow?",
+      answer:
+        "Scaffolding erected within the submarine construction halls at BAE Barrow — including the Devonshire Dock Hall — and at any other construction or maintenance site in Barrow-in-Furness must comply with the Work at Height Regulations 2005. All scaffolding must be inspected before first use by a competent person, after any event likely to have affected its integrity, and at intervals not exceeding 7 days while it remains in use. Given the scale and complexity of submarine construction scaffolding — often spanning multiple decks at significant heights — thorough inspection records are essential for both WAHR compliance and BAE's internal safety management systems. Safe Lee provides WAHR scaffolding inspections for construction and industrial sites across the Barrow area.",
+    },
+    {
+      question:
+        "How often do mobile elevated work platforms at Barrow construction and shipyard sites need WAHR inspections?",
+      answer:
+        "Mobile elevated work platforms (MEWPs) at BAE Barrow and across Barrow-in-Furness construction sites must be thoroughly examined under LOLER 1998 every 6 months, as equipment capable of lifting people. Under WAHR 2005, pre-use checks must also be completed before each use by a competent operator. The two sets of obligations apply concurrently — LOLER governs the mechanical integrity of the MEWP itself, while WAHR 2005 governs the management of the work at height activity. Safe Lee provides both LOLER and WAHR inspection services across the Barrow-in-Furness and Cumbria area.",
+    },
+    {
+      question:
+        "Are safety harnesses and lanyards on Team Barrow regeneration construction sites subject to WAHR inspection?",
+      answer:
+        "Yes. Safety harnesses, energy-absorbing lanyards, inertia reels, and anchor points used on Team Barrow regeneration construction sites and at BAE Systems facilities must be inspected in accordance with Work at Height Regulations 2005. Equipment must be checked before each use by the person who will wear it, and must receive a formal detailed inspection by a competent person at intervals determined by the manufacturer's instructions and the intensity of use — typically every 6 to 12 months. Any harness or lanyard that has been subjected to a fall arrest must be removed from service immediately and inspected before any return to use, regardless of its apparent condition.",
+    },
+  ],
+
   /* ---- PSSR Liverpool (food production / steam focus) ---- */
   "pssr-inspections--liverpool": [
     {
@@ -626,6 +714,205 @@ export const SERVICE_LOCATION_FAQS: Record<string, LocationFAQ[]> = {
     },
   ],
 };
+
+/* ------------------------------------------------------------------ */
+/*  County-level service FAQs                                          */
+/*                                                                      */
+/*  Used on county hub pages (/loler-inspections-greater-manchester).  */
+/*  Questions are scoped to the county as a whole, not to individual   */
+/*  towns. Written at a higher level than LOCATION_FAQS.               */
+/*                                                                      */
+/*  Key structure: { [countySlug]: { [serviceSlug]: LocationFAQ[] } } */
+/* ------------------------------------------------------------------ */
+
+export const COUNTY_SERVICE_FAQS: Record<string, Record<string, LocationFAQ[]>> = {
+  "greater-manchester": {
+    "loler-inspections": [
+      {
+        question:
+          "Which industries in Greater Manchester generate the most LOLER inspection requirements?",
+        answer:
+          "Logistics and warehousing generate the highest volume of LOLER inspections across Greater Manchester — the region hosts major distribution operations at Trafford Park, Middlebrook in Bolton, Pilsworth in Bury, and Omega in Warrington, all requiring regular examinations of forklifts, reach trucks, dock levellers, and goods lifts. Manufacturing — particularly food production on Trafford Park, engineering across Oldham and Tameside, and automotive component supply — generates LOLER requirements for overhead cranes, jib cranes, and lifting accessories. Greater Manchester's NHS trusts at Salford Royal, Stepping Hill, Tameside General, and Wythenshawe Hospital require LOLER examinations for patient hoists, bed lifts, and goods lifts. Ongoing construction across the city region's regeneration programme also creates demand for tower crane and construction hoist inspections.",
+      },
+      {
+        question:
+          "Do all Greater Manchester businesses using forklifts need LOLER thorough examinations?",
+        answer:
+          "Yes. Any employer in Greater Manchester that provides fork lift trucks — whether counterbalance, reach truck, VNA, or order picker — must ensure they are thoroughly examined under LOLER 1998. The examination must be carried out by a competent person at intervals of at least every 12 months for goods-only lifting, or every 6 months if the equipment can lift people. This applies equally to owned, hired, and leased vehicles — the duty falls on the employer who provides the equipment for use at work, not on the owner of the equipment. Safe Lee provides LOLER inspections for fork lift trucks and all lifting equipment across all ten Greater Manchester boroughs.",
+      },
+      {
+        question:
+          "Are lifting accessories like slings and shackles at Greater Manchester sites subject to LOLER?",
+        answer:
+          "Yes. Lifting accessories — including wire rope slings, chain slings, shackles, eyebolts, hook blocks, and spreader beams — are separately regulated under LOLER 1998 and must be thoroughly examined by a competent person every 6 months regardless of how frequently they are used. This is one of the most commonly overlooked compliance gaps across Greater Manchester's manufacturing and logistics sector. A thorough examination of the fork lift truck or crane itself does not cover the accessories used with it — accessories must be examined separately and have their own examination records.",
+      },
+    ],
+
+    "pssr-inspections": [
+      {
+        question:
+          "What types of pressure systems require PSSR inspection across Greater Manchester?",
+        answer:
+          "The most commonly inspected pressure systems across Greater Manchester include compressed air receivers and associated pipework at manufacturing, logistics, and engineering sites; steam boilers and heat exchangers at food production facilities on Trafford Park; autoclaves and sterilisation pressure vessels at NHS hospitals including Salford Royal, Tameside General, and Stepping Hill; hot water systems exceeding PSSR 2000's threshold at large commercial and industrial properties; and process pressure vessels at chemical and pharmaceutical manufacturers. A Written Scheme of Examination must be prepared by a competent person for each system, specifying the examination intervals and the scope of each examination.",
+      },
+      {
+        question:
+          "How does a Greater Manchester business establish whether its compressed air system needs a PSSR Written Scheme?",
+        answer:
+          "A compressed air system requires a Written Scheme of Examination under PSSR 2000 if it consists of a pressure vessel (air receiver) together with associated pipework where the product of the pressure in bar and the internal volume in litres exceeds 250 bar litres. In practice, this threshold is reached by almost all industrial air receivers. For a typical 270-litre air receiver operating at 10 bar — common across Greater Manchester's manufacturing and logistics sites — the product is 2,700 bar litres, well above the threshold. Safe Lee can assess whether your compressed air system falls within the scope of PSSR 2000 and prepare or review your Written Scheme.",
+      },
+    ],
+
+    "coshh-lev-inspections": [
+      {
+        question:
+          "Which Greater Manchester industries have the highest COSHH LEV inspection requirements?",
+        answer:
+          "Manufacturing industries generating hazardous airborne substances dominate LEV inspection demand across Greater Manchester. Automotive component manufacturing across Trafford Park and Eccles requires LEV testing for welding fume extraction — now classified as a Group 1 carcinogen for all welding fume types — and metalworking fluid mist. Food processing at Trafford Park, including facilities operated by Kellogg's and Princes, requires LEV testing for flour dust, spray booth ventilation, and process extraction. Woodworking businesses throughout Greater Manchester need LEV testing for hardwood and MDF dust. Vehicle refinishing businesses throughout the conurbation must test spray booth ventilation. Safe Lee tests LEV systems across all ten Greater Manchester boroughs.",
+      },
+      {
+        question:
+          "How often must LEV systems at Greater Manchester manufacturing sites be examined under COSHH?",
+        answer:
+          "Under COSHH 2002, all Local Exhaust Ventilation systems used to control employee exposure to hazardous substances must be thoroughly examined and tested by a competent person at least every 14 months. This is a statutory minimum — for higher-risk processes such as systems controlling welding fume, isocyanate paint spray, or silica dust, the HSE recommends more frequent examination or supplementary monitoring. The 14-month interval applies from the date of the last examination: there is no permitted extension for production schedule reasons. The examination record — including airflow measurements, system performance data, and any identified defects — must be kept for at least 5 years.",
+      },
+    ],
+
+    "wahr-inspections": [
+      {
+        question:
+          "What construction-related WAHR inspection requirements apply across Greater Manchester?",
+        answer:
+          "Greater Manchester's ongoing major construction activity — including the Northern Gateway development, Mayoral Development Zone sites, and continuous infrastructure and residential projects across all ten boroughs — creates substantial WAHR 2005 compliance requirements. All scaffolding used on construction sites must be inspected before first use, after any event likely to affect its stability, and at intervals not exceeding 7 days. Mobile elevated work platforms, tower scaffolds, and safety harnesses used for work at height must also be inspected at appropriate intervals. Safe Lee provides WAHR inspection services for construction sites and industrial maintenance operations across all of Greater Manchester.",
+      },
+    ],
+
+    "puwer-inspections": [
+      {
+        question:
+          "What work equipment at Greater Manchester manufacturing sites needs PUWER inspections?",
+        answer:
+          "PUWER 1998 covers virtually all work equipment provided by employers in Greater Manchester — from power presses and guillotines at sheet metal fabricators, through CNC machines and machining centres at precision engineering firms, to conveyor systems and automated packaging lines at food manufacturers. For machinery with specific risks — power presses, dangerous cutting machinery, and equipment where guards are critical — regular inspection by a competent person is required with written records retained for HSE inspection. The specific inspection interval is determined by risk assessment, the equipment type, and the intensity of use. Safe Lee provides PUWER inspections for manufacturing businesses across all ten Greater Manchester boroughs.",
+      },
+    ],
+  },
+
+  "lancashire": {
+    "loler-inspections": [
+      {
+        question:
+          "Does Lancashire's aerospace manufacturing sector have specific LOLER inspection requirements?",
+        answer:
+          "Yes. Aerospace manufacturing facilities across Lancashire — including BAE Systems at Warton and Samlesbury, Safran Nacelles at Heasandford in Burnley, and precision engineering firms across Preston, Blackburn, and the M65 corridor — use heavy-lift overhead cranes, precision jib cranes, and specialist lifting rigs for handling aircraft structures, wing components, and engine nacelles. These all require thorough examinations under LOLER 1998 at intervals not exceeding 12 months for goods lifting, reducing to every 6 months for any crane or hoist where the operator is lifted as part of the operation. Lifting accessories — chains, slings, shackles, and eyebolts — used in aerospace component handling must be examined every 6 months regardless of use frequency. Safe Lee provides LOLER inspections across the full Lancashire county area.",
+      },
+      {
+        question:
+          "How often must distribution centre lifting equipment across Lancashire be examined?",
+        answer:
+          "Fork lift trucks, reach trucks, and dock levellers at Lancashire distribution centres — including those at Burnley Bridge Business Park, Roman Way in Preston, and Whitebirk Industrial Estate in Blackburn — must be thoroughly examined by a competent person at least every 12 months under LOLER 1998. Where any lifting equipment is used to lift or carry people, the interval reduces to every 6 months. Lifting accessories — chains, slings, shackles, and eyebolts — must be examined every 6 months regardless of how frequently the item is used. Safe Lee covers all major distribution and manufacturing sites across Lancashire.",
+      },
+    ],
+
+    "pssr-inspections": [
+      {
+        question:
+          "What pressure systems in Lancashire's aerospace sector require PSSR inspections?",
+        answer:
+          "Lancashire's aerospace manufacturing sector operates complex pressure systems including composite-curing autoclaves at BAE Systems and Safran Nacelles (used to cure carbon fibre components under elevated temperature and pressure), compressed air systems supplying pneumatic tooling and CNC machines across the aerospace supply chain, pressure test rigs for aircraft system components, and steam systems used in surface treatment processes. All fall within the scope of PSSR 2000 where they exceed the regulations' pressure-volume threshold, requiring a Written Scheme of Examination and thorough examinations at the intervals the scheme specifies. Safe Lee provides PSSR inspection and Written Scheme services across Lancashire.",
+      },
+    ],
+
+    "coshh-lev-inspections": [
+      {
+        question:
+          "What LEV systems in Lancashire's aerospace and engineering supply chain need COSHH testing?",
+        answer:
+          "Lancashire's aerospace manufacturing supply chain uses Local Exhaust Ventilation to control a range of hazardous substances: welding fume extraction wherever MIG, TIG, or MMA welding is carried out (all welding fume is classified as a Group 1 carcinogen); CNC machining centre extraction for metalworking fluid mist and coolant vapour; paint and sealant application booth ventilation; and composite curing and sanding dust extraction for carbon fibre and resin dust. All these LEV systems must be thoroughly examined and tested at least every 14 months under COSHH 2002. Safe Lee provides COSHH LEV testing for aerospace manufacturers and engineering firms across the full Lancashire county area.",
+      },
+    ],
+
+    "wahr-inspections": [
+      {
+        question:
+          "What WAHR inspection requirements apply to BAE Systems construction and maintenance activities in Lancashire?",
+        answer:
+          "BAE Systems' facilities at Warton and Samlesbury undertake ongoing construction and maintenance activities requiring full compliance with the Work at Height Regulations 2005. All scaffolding must be inspected before first use and at intervals not exceeding 7 days. MEWPs used for maintenance tasks on aircraft and facilities must be thoroughly examined every 6 months under LOLER 1998 and subject to pre-use checks under WAHR 2005. Safety harnesses used by maintenance technicians working at height on aircraft, gantries, or roofs must be formally inspected at least every 12 months and after any fall arrest event. Safe Lee provides WAHR and LOLER inspections for construction sites and industrial maintenance operations across Lancashire.",
+      },
+    ],
+
+    "puwer-inspections": [
+      {
+        question:
+          "Do precision engineering firms in Lancashire need PUWER inspections for CNC machinery?",
+        answer:
+          "Yes. Precision engineering firms across Lancashire's aerospace supply chain — on Roman Way in Preston, Whitebirk in Blackburn, Heasandford in Burnley, and across the M65 corridor — must ensure all work equipment is safe, suitable, and maintained under PUWER 1998. For CNC machining centres, lathes, milling machines, and grinding machines, a risk assessment determines the appropriate inspection frequency. For equipment with specific risks — particularly power presses, guillotines, and metal-forming machinery — regular inspection by a competent person with written records is required. PUWER 1998 requires that all machinery has adequate guarding and that guards are inspected as part of any formal examination. Safe Lee provides PUWER inspections for engineering businesses across Lancashire.",
+      },
+    ],
+  },
+
+  "cheshire": {
+    "pssr-inspections": [
+      {
+        question:
+          "What PSSR inspection requirements apply to Bentley Motors' Crewe manufacturing facility?",
+        answer:
+          "Bentley Motors' Pyms Lane factory operates extensive pressure systems including compressed air networks supplying pneumatic tooling and assembly equipment across the production line, steam and hot water systems used in surface treatment and paint processes, and pressure test rigs for engine and drivetrain components. All fall within the scope of PSSR 2000 and require Written Schemes of Examination prepared by a competent person. Safe Lee provides PSSR inspection services for automotive manufacturers and their supply chain businesses across the Cheshire area.",
+      },
+    ],
+    "loler-inspections": [
+      {
+        question:
+          "Do businesses in Warrington's nuclear sector cluster at Birchwood Park need LOLER inspections?",
+        answer:
+          "Yes. Birchwood Park businesses involved in nuclear decommissioning engineering, component manufacture, and specialist services use overhead cranes, precision lift equipment, and handling systems for nuclear components — all of which require thorough examinations under LOLER 1998. Given that this equipment may be used to handle radioactive or specialist components where a lifting failure would have serious consequences, robust LOLER compliance is particularly critical. Safe Lee provides LOLER inspection services across the Warrington and Cheshire area.",
+      },
+    ],
+  },
+
+  "cumbria": {
+    "loler-inspections": [
+      {
+        question:
+          "What lifting equipment at BAE Systems' Barrow shipyard needs LOLER thorough examinations?",
+        answer:
+          "BAE Systems' Barrow-in-Furness shipyard — the UK's only nuclear submarine construction facility — operates some of the most demanding lifting equipment in UK industry. The 4,500-tonne overhead gantry cranes in the Devonshire Dock Hall, used for lifting submarine hull sections, require thorough examinations under LOLER 1998 at intervals not exceeding 12 months, with 6-monthly examinations for any equipment used to position people. Lifting accessories including spreader beams, slings, and shackles used in submarine assembly must be examined every 6 months. The entire lifting inventory — from the largest hall cranes to the smallest shackle — must have current examination records. Safe Lee provides LOLER inspection services across the Barrow and Cumbria area.",
+      },
+    ],
+    "pssr-inspections": [
+      {
+        question:
+          "What pressure system inspection requirements apply to Pirelli's Carlisle tyre factory?",
+        answer:
+          "Pirelli's Dalton Road factory in Carlisle — operating continuously across multiple shifts — uses vulcanisation pressure vessels and steam curing systems for tyre manufacturing. These fall within the scope of PSSR 2000 and require Written Schemes of Examination specifying the nature and frequency of thorough examinations. Compressed air systems supplying pneumatic handling equipment, compressors, and building machinery also require inspection under the regulations. Safe Lee provides PSSR inspection and Written Scheme services for manufacturing businesses across the Carlisle and Cumbria area.",
+      },
+    ],
+  },
+
+  "staffordshire": {
+    "coshh-lev-inspections": [
+      {
+        question:
+          "What COSHH LEV testing is required for silica dust control across Stoke-on-Trent's ceramics industry?",
+        answer:
+          "Every LEV system used to control silica dust at Stoke-on-Trent ceramics manufacturers — from clay body preparation and glaze mixing through to kiln loading and fettling operations — must be thoroughly examined and tested by a competent person at least every 14 months under COSHH 2002. Silica dust is classified by the HSE as a Group 1 carcinogen, placing these systems among the highest-priority LEV types for enforcement attention. The examination must verify capture velocity at each hood, measure duct airflow, check fan performance, and confirm filter integrity — not merely check that the system is running. An LEV system that is running but performing below its design specification provides inadequate protection even if visually intact. Safe Lee provides COSHH LEV testing for ceramics manufacturers and industrial businesses across the Stoke-on-Trent and Staffordshire area.",
+      },
+    ],
+  },
+};
+
+/* ------------------------------------------------------------------ */
+/*  selectCountyFaqsForPage                                             */
+/*  Returns FAQs for a county hub page given a service slug and        */
+/*  county slug. Returns empty array for combinations not yet covered. */
+/* ------------------------------------------------------------------ */
+
+export function selectCountyFaqsForPage(
+  serviceSlug: string,
+  countySlug: string,
+  limit = 3
+): LocationFAQ[] {
+  return (COUNTY_SERVICE_FAQS[countySlug]?.[serviceSlug] ?? []).slice(0, limit);
+}
 
 /* ------------------------------------------------------------------ */
 /*  Service relevance keywords — used to filter LOCATION_FAQS when    */
@@ -684,6 +971,11 @@ export function selectFaqsForPage(
     if (filtered.length) return filtered.slice(0, limit);
   }
 
-  // 3. Return general location FAQs — better than nothing
-  return locationFaqs.slice(0, limit);
+  // 3. No service-relevant FAQs found for this location.
+  //    Return empty rather than showing questions about a different
+  //    service on this page. A WAHR-Manchester page must not display
+  //    LOLER or PSSR location FAQs just because the keyword filter
+  //    found no WAHR match — that would contaminate the FAQSchema with
+  //    content irrelevant to the page's service.
+  return [];
 }

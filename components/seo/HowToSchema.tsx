@@ -1,6 +1,16 @@
 interface HowToSchemaProps {
   serviceName: string;
   steps?: { title: string; description: string }[];
+  /**
+   * Canonical URL of the page this HowTo lives on (same value passed to
+   * WebPageSchema's `url` prop). When provided:
+   *   - Assigns @id "{pageUrl}#howto"
+   *   - Declares isPartOf → "{pageUrl}#webpage" linking it into the graph
+   *
+   * Always pass this prop — omitting it leaves HowTo as an anonymous,
+   * isolated node with no connections to any other declared entity.
+   */
+  pageUrl?: string;
 }
 
 const DEFAULT_STEPS = [
@@ -31,12 +41,23 @@ const DEFAULT_STEPS = [
   },
 ];
 
-export function HowToSchema({ serviceName, steps }: HowToSchemaProps) {
+export function HowToSchema({ serviceName, steps, pageUrl }: HowToSchemaProps) {
   const displaySteps = steps && steps.length > 0 ? steps : DEFAULT_STEPS;
 
   const schema = {
     "@context": "https://schema.org",
     "@type": "HowTo",
+    /*
+     * @id and isPartOf — emitted when pageUrl is provided.
+     * isPartOf connects this HowTo to the WebPage entity declared on
+     * the same URL, eliminating the isolated node.
+     */
+    ...(pageUrl
+      ? {
+          "@id": `${pageUrl}#howto`,
+          isPartOf: { "@id": `${pageUrl}#webpage` },
+        }
+      : {}),
     name: `How ${serviceName} Works`,
     description: `Our step-by-step process for carrying out ${serviceName.toLowerCase()} to help you achieve and maintain compliance.`,
     step: displaySteps.map((s, i) => ({
