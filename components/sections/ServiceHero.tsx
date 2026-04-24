@@ -82,7 +82,7 @@ export function ServiceHero({
         </Reveal>
 
         <Reveal delay={0.2}>
-          <p className="mt-6 max-w-2xl text-lg leading-relaxed text-white/80">
+          <p className="speakable-subtitle mt-6 max-w-2xl text-lg leading-relaxed text-white/80">
             {shortDescription}
           </p>
         </Reveal>

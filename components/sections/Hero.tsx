@@ -38,7 +38,7 @@ export function Hero() {
           </Reveal>
 
           <Reveal delay={0.2}>
-            <p className="mt-6 max-w-2xl text-lg leading-relaxed text-white/80 sm:text-xl">
+            <p className="speakable-subtitle mt-6 max-w-2xl text-lg leading-relaxed text-white/80 sm:text-xl">
               Expert examinations under LOLER, PUWER, PSSR, COSHH and WAHR.
               Manchester based inspections, supporting clients across the
               North&nbsp;West and UK&nbsp;wide.

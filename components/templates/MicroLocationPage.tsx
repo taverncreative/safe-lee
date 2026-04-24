@@ -19,6 +19,9 @@ import { getStaticServiceFAQs } from "./ServicePage";
 import { ServiceSchema } from "@/components/seo/ServiceSchema";
 import { FAQSchema } from "@/components/seo/FAQSchema";
 import { BreadcrumbSchema } from "@/components/seo/BreadcrumbSchema";
+import { LocalBusinessLocationSchema } from "@/components/seo/LocalBusinessLocationSchema";
+import { WebPageSchema } from "@/components/seo/WebPageSchema";
+import { BUSINESS } from "@/types";
 
 /* ------------------------------------------------------------------ */
 /*  Static reviews fallback                                             */
@@ -97,6 +100,13 @@ export function MicroLocationPage({
   const displayFaqs =
     faqs && faqs.length > 0 ? faqs : getStaticServiceFAQs(service.slug);
 
+  /*
+   * Canonical URL for this micro-location page.
+   * Pattern: /{serviceSlug}-near-{locationSlug}
+   * Mirrors the route used in app/[serviceLocation]/page.tsx.
+   */
+  const pageUrl = `${BUSINESS.url}/${service.slug}-near-${location.slug}`;
+
   return (
     <>
       <ServiceSchema
@@ -106,13 +116,50 @@ export function MicroLocationPage({
         regulationName={service.regulationName}
         locationName={location.name}
         locationSlug={location.slug}
+        locationCounty={location.county}
+        linkToLocalBusiness
       />
-      <FAQSchema faqs={displayFaqs} />
+      <FAQSchema faqs={displayFaqs} pageUrl={pageUrl} />
       <BreadcrumbSchema
         items={[
           { name: "Home", href: "/" },
           { name: service.name, href: `/${service.slug}` },
           { name: `${service.name} Near ${location.name}`, href: `/${service.slug}-near-${location.slug}` },
+        ]}
+        pageUrl={pageUrl}
+      />
+      {/*
+       * LocalBusinessLocationSchema — brings micro-location pages to parity
+       * with service+location pages. Uses the same Irlam base geo and the
+       * same parentOrganization → /#organization link.
+       *
+       * pageUrlOverride is required because the default computed URL would
+       * be /{serviceSlug}-{locationSlug}, but micro-location pages live at
+       * /{serviceSlug}-near-{locationSlug}. The override keeps the @id
+       * consistent with the canonical URL of this page.
+       */}
+      <LocalBusinessLocationSchema
+        serviceName={service.name}
+        serviceSlug={service.slug}
+        locationName={location.name}
+        locationSlug={location.slug}
+        county={location.county}
+        pageUrlOverride={pageUrl}
+      />
+      {/*
+       * WebPageSchema — previously absent from MicroLocationPage.
+       * No primaryImage: the hero uses a CSS gradient, not an <Image>.
+       * about includes Service and LocalBusiness now that both are declared.
+       */}
+      <WebPageSchema
+        title={`${service.name} Near ${location.name} | Safe Lee Inspection & Consultancy`}
+        description={`Professional ${service.name.toLowerCase()} near ${location.name}, ${location.county}. Safe Lee Inspection & Consultancy covers all surrounding areas.`}
+        url={pageUrl}
+        mainEntityId={`${pageUrl}/#service`}
+        hasBreadcrumb
+        additionalAboutIds={[
+          `${pageUrl}/#service`,
+          `${pageUrl}/#localbusiness`,
         ]}
       />
 
@@ -166,7 +213,7 @@ export function MicroLocationPage({
           </Reveal>
 
           <Reveal delay={0.15}>
-            <p className="mt-4 max-w-2xl text-lg text-white/80">
+            <p className="speakable-subtitle mt-4 max-w-2xl text-lg text-white/80">
               Looking for professional {service.shortName} inspections near{" "}
               {location.name}? Safe Lee Inspection &amp; Consultancy covers{" "}
               {location.county} and all surrounding areas.

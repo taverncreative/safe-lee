@@ -7,7 +7,11 @@ export default function robots(): MetadataRoute.Robots {
       {
         userAgent: "*",
         allow: "/",
-        disallow: "/api/",
+        /*
+         * /api/og is the dynamic OG image generator (edge route).
+         * Googlebot-Image must be able to fetch it to render og:image previews,
+         * so /api/ must NOT be disallowed here.
+         */
       },
     ],
     sitemap: `${BUSINESS.url}/sitemap.xml`,

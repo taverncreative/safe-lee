@@ -20,6 +20,7 @@ import { FAQSchema } from "@/components/seo/FAQSchema";
 import { BreadcrumbSchema } from "@/components/seo/BreadcrumbSchema";
 import { HowToSchema } from "@/components/seo/HowToSchema";
 import { WebPageSchema } from "@/components/seo/WebPageSchema";
+import { ItemListSchema } from "@/components/seo/ItemListSchema";
 import { BUSINESS } from "@/types";
 import { GOOGLE_REVIEWS } from "@/lib/content/reviews";
 
@@ -189,19 +190,56 @@ export function ServicePage({ service, overviewImage, overviewAlt }: ServicePage
         serviceSlug={service.slug}
         regulationName={service.regulationName}
       />
-      <FAQSchema faqs={faqs} />
+      <FAQSchema
+        faqs={faqs}
+        pageUrl={`${BUSINESS.url}/${service.slug}`}
+      />
       <BreadcrumbSchema
         items={[
           { name: "Home", href: "/" },
           { name: service.name, href: `/${service.slug}` },
         ]}
+        pageUrl={`${BUSINESS.url}/${service.slug}`}
       />
-      <HowToSchema serviceName={service.name} />
+      <HowToSchema
+        serviceName={service.name}
+        pageUrl={`${BUSINESS.url}/${service.slug}`}
+      />
       <WebPageSchema
         title={`${service.name} | Safe Lee Inspection & Consultancy`}
         description={service.metaDescription}
         url={`${BUSINESS.url}/${service.slug}`}
+        mainEntityId={`${BUSINESS.url}/${service.slug}/#service`}
+        hasBreadcrumb
+        primaryImage={
+          overviewImage
+            ? {
+                url: `${BUSINESS.url}${overviewImage}`,
+                caption: `${service.name} — Safe Lee Inspection & Consultancy`,
+              }
+            : undefined
+        }
+        additionalAboutIds={[`${BUSINESS.url}/${service.slug}/#service`]}
       />
+      {/*
+       * ItemList — only emitted for pSEO services where Coverage renders
+       * a visible pill-link for every location in LOCATIONS. The report-writing
+       * service shows no location links, so no ItemList is declared there.
+       * Each ListItem corresponds exactly to a <Link> in Coverage's locations.map().
+       */}
+      {(PSEO_SERVICE_SLUGS as readonly string[]).includes(service.slug) && (
+        <ItemListSchema
+          id={`${BUSINESS.url}/${service.slug}#location-list`}
+          name={`${service.name} — Areas We Cover`}
+          items={LOCATIONS.map((loc, i) => ({
+            position: i + 1,
+            name: loc.name,
+            url: `${BUSINESS.url}/${service.slug}-${loc.slug}`,
+          }))}
+          pageUrl={`${BUSINESS.url}/${service.slug}`}
+          serviceId={`${BUSINESS.url}/${service.slug}/#service`}
+        />
+      )}
 
       <ServiceHero
         serviceName={service.name}

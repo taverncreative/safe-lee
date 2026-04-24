@@ -14,8 +14,10 @@ import { Button } from "@/components/ui/Button";
 import { FAQAccordion } from "@/components/sections/FAQAccordion";
 import { CTA } from "@/components/sections/CTA";
 import { ServiceSchema } from "@/components/seo/ServiceSchema";
+import { FAQSchema } from "@/components/seo/FAQSchema";
 import { BreadcrumbSchema } from "@/components/seo/BreadcrumbSchema";
 import { WebPageSchema } from "@/components/seo/WebPageSchema";
+import { ItemListSchema } from "@/components/seo/ItemListSchema";
 import { BUSINESS } from "@/types";
 import type { CountyData } from "@/lib/content/county-data";
 
@@ -83,11 +85,35 @@ export function CountyHubPage({
             href: `/${service.slug}-${county.slug}`,
           },
         ]}
+        pageUrl={pageUrl}
       />
       <WebPageSchema
         title={`${service.name} in ${county.name} | Safe Lee Inspection & Consultancy`}
         description={`Professional ${service.name.toLowerCase()} across ${county.name}. Safe Lee Inspection & Consultancy serves all ${locations.length} major towns and cities in ${county.name}.`}
         url={pageUrl}
+        mainEntityId={`${pageUrl}/#service`}
+        hasBreadcrumb
+        primaryImage={{
+          url: `${BUSINESS.url}${heroImage}`,
+          caption: `${service.name} in ${county.name}`,
+        }}
+        additionalAboutIds={[`${pageUrl}/#service`]}
+      />
+      {/*
+       * ItemList — mirrors the visible location link grid rendered below.
+       * Each ListItem corresponds to a <Link> in the locations.map() grid.
+       * position starts at 1 per schema.org specification.
+       */}
+      <ItemListSchema
+        id={`${pageUrl}#location-list`}
+        name={`${service.name} in ${county.name} — Areas We Cover`}
+        items={locations.map((loc, i) => ({
+          position: i + 1,
+          name: loc.name,
+          url: `${BUSINESS.url}/${service.slug}-${loc.slug}`,
+        }))}
+        pageUrl={pageUrl}
+        serviceId={`${pageUrl}/#service`}
       />
 
       {/* ---- Hero ---- */}
@@ -121,7 +147,7 @@ export function CountyHubPage({
           </Reveal>
 
           <Reveal delay={0.1}>
-            <p className="mt-4 max-w-2xl text-lg text-white/85">
+            <p className="speakable-subtitle mt-4 max-w-2xl text-lg text-white/85">
               {county.keyFact}. Safe Lee Inspection &amp; Consultancy provides
               thorough examinations for businesses across all{" "}
               {locations.length} locations in {county.name}.
@@ -209,6 +235,7 @@ export function CountyHubPage({
       </section>
 
       {/* ---- FAQs ---- */}
+      {faqs.length > 0 && <FAQSchema faqs={faqs} pageUrl={pageUrl} />}
       {faqs.length > 0 && <FAQAccordion faqs={faqs} />}
 
       {/* ---- CTA ---- */}

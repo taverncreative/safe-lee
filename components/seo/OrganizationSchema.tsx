@@ -10,7 +10,12 @@ export function OrganizationSchema() {
     url: BUSINESS.url,
     logo: `${BUSINESS.url}/images/Logos/Logo For Footer.png`,
     founder: {
+      /*
+       * Same @id as SiteSchema — both script tags are processed on the homepage,
+       * and JSON-LD node merging unifies them into a single Person entity.
+       */
       "@type": "Person",
+      "@id": `${BUSINESS.url}/#founder`,
       name: BUSINESS.founder,
     },
     address: {

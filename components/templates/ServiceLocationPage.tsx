@@ -29,6 +29,22 @@ import type { LocationFAQ } from "@/lib/content/location-faqs";
 import type { LocationIndustry } from "@/lib/content/location-industries";
 
 /* ------------------------------------------------------------------ */
+/*  Hero image map (mirrors LocalServiceHero.tsx — keyed by slug)      */
+/*                                                                      */
+/*  Intentionally duplicated here rather than imported from the visual  */
+/*  component to keep schema generation independent of render logic.    */
+/*  If a new service is added, update both files.                       */
+/* ------------------------------------------------------------------ */
+
+const SERVICE_HERO_IMAGES: Record<string, string> = {
+  "pssr-inspections": "/images/PSSR/Hero.webp",
+  "loler-inspections": "/images/LOLER/HERO.webp",
+  "wahr-inspections": "/images/WAHR/Hero.webp",
+  "puwer-inspections": "/images/PUWER/Hero.webp",
+  "coshh-lev-inspections": "/images/COSSH/hero.webp",
+};
+
+/* ------------------------------------------------------------------ */
 /*  Props                                                               */
 /* ------------------------------------------------------------------ */
 
@@ -114,14 +130,20 @@ export function ServiceLocationPage({
         regulationName={service.regulationName}
         locationName={location.name}
         locationSlug={location.slug}
+        locationCounty={location.county}
+        linkToLocalBusiness
       />
-      <FAQSchema faqs={displayFaqs} />
+      <FAQSchema
+        faqs={displayFaqs}
+        pageUrl={`${BUSINESS.url}/${service.slug}-${location.slug}`}
+      />
       <BreadcrumbSchema
         items={[
           { name: "Home", href: "/" },
           { name: service.name, href: `/${service.slug}` },
           { name: `${service.name} in ${location.name}`, href: `/${service.slug}-${location.slug}` },
         ]}
+        pageUrl={`${BUSINESS.url}/${service.slug}-${location.slug}`}
       />
       <LocalBusinessLocationSchema
         serviceName={service.name}
@@ -134,6 +156,26 @@ export function ServiceLocationPage({
         title={`${service.name} in ${location.name} | Safe Lee Inspection & Consultancy`}
         description={`Professional ${service.name.toLowerCase()} in ${location.name}, ${location.county}. Thorough examinations by a competent person from Safe Lee Inspection & Consultancy.`}
         url={`${BUSINESS.url}/${service.slug}-${location.slug}`}
+        mainEntityId={`${BUSINESS.url}/${service.slug}-${location.slug}/#service`}
+        hasBreadcrumb
+        primaryImage={{
+          url: `${BUSINESS.url}${SERVICE_HERO_IMAGES[service.slug] ?? "/images/HERO.webp"}`,
+          caption: `${service.name} in ${location.name} — Safe Lee Inspection & Consultancy`,
+        }}
+        additionalAboutIds={[
+          /*
+           * Service entity — the primary subject of this page.
+           * @id matches ServiceSchema and WebPageSchema.mainEntityId exactly.
+           */
+          `${BUSINESS.url}/${service.slug}-${location.slug}/#service`,
+          /*
+           * LocalBusinessLocationSchema is always rendered on service+location
+           * pages, so this @id is always a declared node on this page.
+           * Together the about array reads:
+           *   [/#organization, {pageUrl}/#service, {pageUrl}/#localbusiness]
+           */
+          `${BUSINESS.url}/${service.slug}-${location.slug}/#localbusiness`,
+        ]}
       />
     </>
   );

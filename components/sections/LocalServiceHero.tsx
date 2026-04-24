@@ -83,7 +83,7 @@ export function LocalServiceHero({
         </Reveal>
 
         <Reveal delay={0.15}>
-          <p className="mt-4 max-w-2xl text-lg text-white/80">
+          <p className="speakable-subtitle mt-4 max-w-2xl text-lg text-white/80">
             {subtitle
               ? subtitle
               : `Professional ${shortName} inspections in ${locationName}, ${county}. Carried out by experienced, qualified engineers.`}
