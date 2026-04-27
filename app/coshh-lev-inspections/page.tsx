@@ -10,7 +10,7 @@ const SERVICE = {
   description:
     "Local Exhaust Ventilation (LEV) testing and thorough examinations under COSHH 2002. We ensure your extraction systems effectively control hazardous substances and protect worker health.",
   metaDescription:
-    "COSHH LEV inspections and local exhaust ventilation testing. Thorough examinations under COSHH 2002 to ensure effective hazardous substance control. Manchester and North West.",
+    "Statutory LEV testing and thorough examinations under COSHH 2002 for extraction systems. Manchester-based, North West & UK wide. Get a free quote.",
   icon: "Wind",
   sortOrder: 5,
 };

@@ -5,6 +5,11 @@ export const metadata: Metadata = {
   title: "Privacy Policy",
   description: `Privacy policy for ${BUSINESS.name}. Learn how we collect, use, and protect your personal data.`,
   alternates: { canonical: "/privacy-policy" },
+  /*
+   * Legal page — noindex (preserve crawl budget, avoid SERP clutter) but
+   * still follow links so internal link equity flows normally.
+   */
+  robots: { index: false, follow: true },
 };
 
 export default function PrivacyPolicyPage() {

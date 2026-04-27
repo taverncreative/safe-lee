@@ -5,6 +5,12 @@ export const metadata: Metadata = {
   title: "Terms and Conditions",
   description: `Terms and conditions for ${BUSINESS.name}. Read our terms of service for inspection and consultancy services.`,
   alternates: { canonical: "/terms-and-conditions" },
+  /*
+   * Legal page — keep out of search results to preserve crawl budget
+   * and avoid SERP clutter. Links are still followed so any internal
+   * link equity from this page flows normally.
+   */
+  robots: { index: false, follow: true },
 };
 
 export default function TermsAndConditionsPage() {

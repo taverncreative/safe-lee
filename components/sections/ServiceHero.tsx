@@ -56,6 +56,7 @@ export function ServiceHero({
         alt={`${serviceName} — Safe Lee Inspection & Consultancy`}
         fill
         priority
+        fetchPriority="high"
         className="object-cover"
         sizes="100vw"
       />

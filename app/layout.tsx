@@ -18,11 +18,38 @@ export const metadata: Metadata = {
     (process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.safeleeinspectionconsultancy.com").replace(/\/$/, "")
   ),
   title: {
-    default: "Safe Lee Inspection & Consultancy | Statutory Inspections Manchester",
+    /*
+     * default is the fallback title used when a route does not export its
+     * own metadata.title. Keyword-first ordering matches the homepage and
+     * keeps inner-page CTR consistent if a new page is ever added without
+     * an explicit title.
+     */
+    default: "Statutory Inspections Manchester | Safe Lee Inspection & Consultancy",
     template: "%s | Safe Lee Inspection & Consultancy",
   },
+  /*
+   * Sitewide fallback description — used only when a page does not export
+   * its own metadata.description. Kept under 155 chars to match the SERP
+   * truncation limit so even fallback usage stays clean.
+   */
   description:
-    "Professional PSSR, LOLER, WAHR, PUWER, and COSHH LEV inspections from Safe Lee Inspection & Consultancy Ltd. Serving Manchester, the North West, and beyond.",
+    "Professional LOLER, PSSR, PUWER, WAHR & COSHH LEV inspections. Manchester-based, serving the North West & UK wide. 5.0★ on Google. Get a free quote.",
+  /*
+   * Sitewide default <meta name="robots">. Per-page metadata can override
+   * this — e.g. legal pages set robots.index = false to keep them out of
+   * search results while still allowing link equity to flow (follow = true).
+   *
+   * Explicit max-* directives instruct Google to use the largest snippet,
+   * largest image preview, and unrestricted video preview length when
+   * generating SERP results.
+   */
+  robots: {
+    index: true,
+    follow: true,
+    "max-snippet": -1,
+    "max-image-preview": "large",
+    "max-video-preview": -1,
+  },
 };
 
 export default function RootLayout({

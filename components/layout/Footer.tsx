@@ -8,6 +8,7 @@ const navigationLinks = [
   { label: "COSHH", href: "/coshh-lev-inspections" },
   { label: "PUWER", href: "/puwer-inspections" },
   { label: "WAHR", href: "/wahr-inspections" },
+  { label: "Resources", href: "/resources" },
 ];
 
 export function Footer() {

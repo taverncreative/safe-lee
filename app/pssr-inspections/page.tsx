@@ -10,7 +10,7 @@ const SERVICE = {
   description:
     "Comprehensive pressure systems examinations ensuring compliance with PSSR 2000. We inspect pressure vessels, pipework, protective devices, and associated systems to protect your workforce and maintain legal compliance.",
   metaDescription:
-    "Professional PSSR inspections and pressure systems safety examinations. Ensure compliance with Pressure Systems Safety Regulations 2000. Serving Manchester and the North West.",
+    "Statutory PSSR examinations and Written Schemes for pressure systems — air receivers, steam, process. Manchester-based, North West & UK wide.",
   icon: "Gauge",
   sortOrder: 1,
 };

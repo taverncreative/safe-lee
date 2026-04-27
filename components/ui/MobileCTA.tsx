@@ -1,27 +1,21 @@
-"use client";
+/* ------------------------------------------------------------------ */
+/*  MobileCTA                                                           */
+/*                                                                      */
+/*  Sticky-bottom call/quote bar shown on mobile only. Server component */
+/*  — no scroll listener, no useState, no hydration cost.               */
+/*                                                                      */
+/*  Previous implementation used a JS scroll handler to reveal the bar  */
+/*  after 300px of scroll. Removed: the bar is always present once the  */
+/*  user is below the navbar — the visual difference is negligible and  */
+/*  the TBT win is not.                                                 */
+/* ------------------------------------------------------------------ */
 
-import { useState, useEffect } from "react";
 import Link from "next/link";
 import { Phone } from "lucide-react";
 
 export function MobileCTA() {
-  const [visible, setVisible] = useState(false);
-
-  useEffect(() => {
-    function handleScroll() {
-      setVisible(window.scrollY > 300);
-    }
-
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    handleScroll();
-
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
-  if (!visible) return null;
-
   return (
-    <div className="fixed inset-x-0 bottom-0 z-40 border-t border-sl-gray-200 bg-white p-3 pb-[max(0.75rem,env(safe-area-inset-bottom))] shadow-[0_-4px_12px_rgba(0,0,0,0.1)] md:hidden">
+    <div className="mobile-cta-scroll-reveal fixed inset-x-0 bottom-0 z-40 border-t border-sl-gray-200 bg-white p-3 pb-[max(0.75rem,env(safe-area-inset-bottom))] shadow-[0_-4px_12px_rgba(0,0,0,0.1)] md:hidden">
       <div className="flex gap-3">
         <a
           href="tel:01617062022"

@@ -124,6 +124,8 @@ export function CountyHubPage({
           fill
           className="object-cover"
           priority
+          fetchPriority="high"
+          sizes="100vw"
         />
         <div className="absolute inset-0 bg-sl-gray-900/70" />
 

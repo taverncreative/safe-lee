@@ -16,6 +16,7 @@ const serviceLinks = [
 
 const navLinks = [
   ...serviceLinks,
+  { label: "Resources", href: "/resources" },
   { label: "Contact Us", href: "/contact-us" },
 ];
 
@@ -155,8 +156,15 @@ export function Navbar() {
                 </Link>
               ))}
 
-              {/* Contact */}
+              {/* Resources + Contact */}
               <div className="mt-4 border-t border-white/10 pt-4">
+                <Link
+                  href="/resources"
+                  className="flex items-center gap-3 rounded-lg px-3 py-3 text-sm font-medium text-white transition-colors hover:bg-white/10"
+                  onClick={closeAll}
+                >
+                  Resources
+                </Link>
                 <Link
                   href="/contact-us"
                   className="flex items-center gap-3 rounded-lg px-3 py-3 text-sm font-medium text-white transition-colors hover:bg-white/10"

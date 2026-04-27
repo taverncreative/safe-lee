@@ -5,6 +5,11 @@ export const metadata: Metadata = {
   title: "Accessibility Statement",
   description: `Accessibility statement for ${BUSINESS.name}. Our commitment to making our website accessible to everyone.`,
   alternates: { canonical: "/accessibility-statement" },
+  /*
+   * Legal page — noindex (preserve crawl budget, avoid SERP clutter) but
+   * still follow links so internal link equity flows normally.
+   */
+  robots: { index: false, follow: true },
 };
 
 export default function AccessibilityPage() {

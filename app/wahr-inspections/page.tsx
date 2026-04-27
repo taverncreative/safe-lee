@@ -10,7 +10,7 @@ const SERVICE = {
   description:
     "Inspections of work at height equipment under WAHR 2005. We examine scaffolding, ladders, harnesses, guardrails, and fall arrest systems to prevent falls — the leading cause of workplace fatalities.",
   metaDescription:
-    "WAHR inspections for work at height equipment. Expert examinations of scaffolding, ladders, harnesses, and fall protection under Work at Height Regulations 2005.",
+    "WAHR 2005 inspections of harnesses, lanyards, fall arrest blocks and PPE. Manchester-based, serving the North West & UK wide. Get a free quote.",
   icon: "HardHat",
   sortOrder: 3,
 };

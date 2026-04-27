@@ -10,7 +10,7 @@ const SERVICE = {
   description:
     "Thorough examinations of lifting equipment under LOLER 1998. We inspect cranes, hoists, lifts, slings, and all lifting accessories to ensure they are safe for continued use.",
   metaDescription:
-    "Expert LOLER inspections for lifting equipment. Thorough examinations under LOLER 1998 for cranes, hoists, lifts, and lifting accessories. Manchester and North West coverage.",
+    "Statutory LOLER thorough examinations for cranes, hoists, MEWPs, slings and lifting accessories. Manchester-based, North West & UK wide.",
   icon: "ArrowUpFromLine",
   sortOrder: 2,
 };

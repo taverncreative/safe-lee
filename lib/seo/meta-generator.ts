@@ -40,17 +40,28 @@ export function homePageMeta(): Metadata {
     /*
      * absolute bypasses the root layout template so the brand appears
      * exactly once in the carefully crafted homepage title.
+     *
+     * Keyword-first ordering: "Statutory Inspections Manchester" leads
+     * because Google ranks click-intent on the first ~580px of the title.
+     * Inner service pages inherit the layout template (%s | Safe Lee…)
+     * which already puts page-portion first, so this homepage override
+     * is the only place that needs explicit reordering.
      */
     title: {
       absolute:
-        "Safe Lee Inspection & Consultancy | Statutory Inspections Manchester",
+        "Statutory Inspections Manchester | Safe Lee Inspection & Consultancy",
     },
+    /*
+     * Meta description — kept under 155 chars so Google does not truncate
+     * in SERP. Front-loads service codes, location, social proof, and a
+     * CTA — all the elements that drive click-through.
+     */
     description:
-      "Professional PSSR, LOLER, WAHR, PUWER, and COSHH LEV inspections from Safe Lee Inspection & Consultancy Ltd. Serving Manchester, the North West, and beyond. 5.0★ Google reviews.",
+      "Professional LOLER, PSSR, PUWER, WAHR & COSHH LEV inspections. Manchester-based, serving the North West & UK wide. 5.0★ on Google. Get a free quote.",
     alternates: { canonical: SITE_URL },
     openGraph: {
       title:
-        "Safe Lee Inspection & Consultancy | Statutory Inspections Manchester",
+        "Statutory Inspections Manchester | Safe Lee Inspection & Consultancy",
       description:
         "Professional statutory inspections from experienced engineers. PSSR, LOLER, WAHR, PUWER, COSHH LEV. Based in Irlam, Manchester.",
       url: SITE_URL,
@@ -145,7 +156,12 @@ export function countyHubMeta(
 export function contactMeta(): Metadata {
   return {
     title: "Contact Us",
-    description: `Get in touch with ${BUSINESS.name} for professional statutory inspections. Call ${BUSINESS.phone} or fill out our contact form. Based in Irlam, Manchester.`,
+    /*
+     * Brand omitted from description — already in the title via the layout
+     * template. Leaves room for keyword phrases and a call-to-action while
+     * staying under the 155-char SERP truncation limit.
+     */
+    description: `Talk to a competent person about LOLER, PSSR, PUWER, WAHR or COSHH LEV inspections. Call ${BUSINESS.phone} or send a message — Manchester-based.`,
     alternates: { canonical: `${SITE_URL}/contact-us` },
   };
 }

@@ -10,7 +10,7 @@ const SERVICE = {
   description:
     "Detailed inspections of work equipment under PUWER 1998. We assess machinery, power tools, and all work equipment for safety, suitability, and maintenance compliance.",
   metaDescription:
-    "Professional PUWER inspections for work equipment. Comprehensive assessments under PUWER 1998 for machinery, tools, and equipment safety. Serving Manchester and beyond.",
+    "Statutory PUWER thorough examinations for production machinery, presses, conveyors and work equipment. Manchester-based, North West & UK wide.",
   icon: "Wrench",
   sortOrder: 4,
 };

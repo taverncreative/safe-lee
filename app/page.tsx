@@ -94,8 +94,8 @@ export default function Home() {
       <OrganizationSchema />
       <FAQSchema faqs={faqs} pageUrl={BUSINESS.url} />
       <WebPageSchema
-        title="Safe Lee Inspection & Consultancy | Statutory Inspections Manchester"
-        description="Professional PSSR, LOLER, WAHR, PUWER, and COSHH LEV inspections from Safe Lee Inspection & Consultancy Ltd. Serving Manchester, the North West, and beyond."
+        title="Statutory Inspections Manchester | Safe Lee Inspection & Consultancy"
+        description="Professional LOLER, PSSR, PUWER, WAHR & COSHH LEV inspections. Manchester-based, serving the North West & UK wide. 5.0★ on Google. Get a free quote."
         url={BUSINESS.url}
         mainEntityId={`${BUSINESS.url}/#organization`}
         primaryImage={{

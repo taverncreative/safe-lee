@@ -12,8 +12,15 @@ export function Hero() {
         alt="Statutory inspection engineer examining industrial equipment — Safe Lee Inspection & Consultancy"
         fill
         priority
+        // LCP image — explicit fetchPriority ensures both the <img> and the
+        // generated <link rel="preload"> get fetchpriority="high". In Next.js
+        // 16, `priority` alone does NOT add the attribute on the rendered
+        // <img>, so it must be set explicitly.
+        fetchPriority="high"
         className="object-cover"
-        sizes="100vw"
+        // 100vw on mobile, but cap to viewport — Next selects the closest
+        // device size from next.config.ts (640/750/828/1080/1200/1920).
+        sizes="(max-width: 768px) 100vw, 100vw"
       />
       {/* Dark overlay */}
       <div

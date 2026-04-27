@@ -62,3 +62,31 @@ html {
   opacity: 1 !important;
   transform: none !important;
 }
+
+/*
+ * Mobile sticky CTA — scroll-driven show/hide without JS.
+ *
+ * Browsers that support animation-timeline (Chrome/Edge/Opera): the bar
+ * slides up between 200–400px of scroll, then stays put.
+ *
+ * Browsers without support (Safari, Firefox stable): the bar is always
+ * visible on mobile. Acceptable progressive enhancement — no fallback JS
+ * required.
+ */
+@supports (animation-timeline: scroll()) {
+  .mobile-cta-scroll-reveal {
+    transform: translateY(100%);
+    animation: mobile-cta-slide-up linear forwards;
+    animation-timeline: scroll(root block);
+    animation-range: 200px 400px;
+  }
+}
+
+@keyframes mobile-cta-slide-up {
+  from {
+    transform: translateY(100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
